@@ -41,7 +41,7 @@ formBuscar.addEventListener('submit', event => {
 async function obtenerBusqueda(buscar) {    
     let resp = await fetch('http://localhost:3000/buscar/'+ buscar);        
     let data = await resp.json();
-    let result = data;
+    result = data;
 
     if(result.error === 'No hay productos para tu búsqueda'){
         location.href = "notFound.html";
@@ -75,6 +75,7 @@ function previusPage(){
 }
         
 function showProductos(productos){
+    console.log(productos)
     let pageCont =Math.ceil(productos.length/pageSize);
     let pagination = paginate(productos,pageSize,pageNumber);
     pagination.forEach(element => {//ciclo forEach para recorrer elementos

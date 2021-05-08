@@ -13,8 +13,11 @@
           event.preventDefault()
           event.stopPropagation()
         }
-
-        form.classList.add('was-validated')
+        
+          form.classList.add('was-validated')
+          location.href = "thanksPage.html";
+          localStorage.clear();
+        
       }, false)
     })
 })()
