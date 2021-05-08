@@ -20,11 +20,21 @@ app.listen(process.env.PORT, ()=> {
 });
 
 app.get('/productos', cors(midd.corsOptions), async function (req, res){
-    let result = await db.mandarProductos();
-    db.Respuesta = {
-        codigo: 200,
-        error: false,
-        message: result
+    try {
+        let result = await db.mandarProductos();
+        res.send(result)
+    } catch (error) {
+        let errorMensaje = { error : error.message }
+        res.status(404).send(errorMensaje)
     }
-    res.send(db.Respuesta)
 });
+
+app.get('/buscar/:palabra', async (req, res) => {
+    try {
+        let result = await db.mandarBusqueda(req.params.palabra);
+        res.send(result);
+    } catch(error) {
+        let errorMensaje = { error: error.message }
+        res.status(404).send(errorMensaje);
+    }
+})

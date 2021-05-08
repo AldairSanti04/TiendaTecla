@@ -24,7 +24,7 @@ function getProductos(){
     fetch('http://localhost:3000/productos')
     .then(res => res.json())
     .then(data => {
-        result = data.message;
+        result = data;
         showProductos(result);
     })
 }
@@ -38,21 +38,20 @@ formBuscar.addEventListener('submit', event => {
     buscar.value = '';
 })
 
-function obtenerBusqueda(buscar, result) {
+async function obtenerBusqueda(buscar) {
     items.innerHTML  =  '' ;
     paginadorP.innerHTML = '';
     titulo.textContent = `Resultados para: ${buscar}`;
-    let busquedaArray = [];
+    
+    let resp = await fetch('http://localhost:3000/buscar/'+ buscar);        
+    let data = await resp.json();
+    let result = data;
 
-    result.forEach(element => {
-        if(element.nombre.includes(buscar)) {
-            busquedaArray.push(element);
-        }
-    })
-
-    showProductos(busquedaArray);
-    if(items.innerHTML == ''){
+    if(result.error === 'No hay productos para tu busqueda'){
         titulo.textContent = `No hay resultados para: ${buscar}`;
+        items.innerHTML = '<a href="index.html" class="btn btn-outline-primary">Volver a Inicio</a>'
+    } else {
+        showProductos(result);
     }
 }
 
@@ -78,7 +77,6 @@ function previusPage(){
 }
         
 function showProductos(productos){
-    console.log(productos)
     let pageCont =Math.ceil(productos.length/pageSize);
     let pagination = paginate(productos,pageSize,pageNumber);
     pagination.forEach(element => {//ciclo forEach para recorrer elementos

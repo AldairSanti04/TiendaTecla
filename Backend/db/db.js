@@ -12,20 +12,46 @@ class Producto {
 }
 
 async function getProductos () {
-    const url = "https://api.mercadolibre.com/sites/MLM/search?category=MLM1430";
-    const resp = await fetch(url);
-    const data = await resp.json();
-    const result = data.results;
+    let url = "https://api.mercadolibre.com/sites/MLM/search?category=MLM1430";
+    let resp = await fetch(url);
+    let data = await resp.json();
+    let result = data.results;
     return result
 }
 
 
 async function mandarProductos() {
     let resultado = await getProductos();
+    Productos = [];
     resultado.forEach(element => {
         Productos.push(new Producto(element.id, element.title, element.price, element.thumbnail));
     });
     return Productos
 }
 
-module.exports = { mandarProductos, Productos };
+async function buscarProductos (palabra){
+    try {
+        let resp = await fetch('https://api.mercadolibre.com/sites/MLM/search?category=MLM1430&q='+ palabra);        
+        let data = await resp.json();
+        let result = data.results;
+
+        if(result.length == 0) {
+            throw new Error('No hay productos para tu busqueda');
+        }
+
+        return result;
+    } catch(error) {
+        throw error;
+    }
+}
+
+async function mandarBusqueda(palabra) {
+    let resultado = await buscarProductos(palabra);
+    Productos = [];
+    resultado.forEach(element => {
+        Productos.push(new Producto(element.id, element.title, element.price, element.thumbnail));
+    });
+    return Productos
+}
+
+module.exports = { mandarProductos, Productos, mandarBusqueda};
