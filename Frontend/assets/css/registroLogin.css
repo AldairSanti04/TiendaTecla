@@ -1,0 +1,138 @@
+*{
+    margin: 0;
+    padding: 0;
+    text-size-adjust: border-box;
+    text-decoration: none;
+    font-family: sans-serif;
+}
+
+body{
+    background-image: url(../img/ciudad2.jpg) ;
+    /* background-image: url(../images/ciudad.jpg) ; */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.contenedorTodo{
+    width: 100%;
+    padding: 20px;
+    margin: auto;
+    margin-top: 100px;
+}
+
+.registroLogin{
+    width: 100%;
+    max-width: 800px;
+    margin: auto;
+    position: relative;
+}
+
+/* Caja Trasera */
+
+.cajaTrasera{
+    width: 100%;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+    background-color: rgba(0, 128, 255, 0.5);
+}
+
+.cajaTrasera div{
+    margin: 100px 40px;
+    color: white;
+    transition: all 500ms;
+}
+
+.cajaTrasera div p,
+.cajaTrasera div button{
+    margin-top: 30px;
+}
+
+.cajaTrasera div h3{
+    font-weight: 400;
+    font-size: 26px;
+}
+
+
+/* Formularios */
+
+.contenedorLoginRegistro{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 380px;
+    position: relative;
+    top: -185px;
+    left: 10px;
+    
+    /* animacion */
+    transition: left 500ms cubic-bezier(0.175, 0.885, 0.320,1.275);
+}
+
+.contenedorLoginRegistro form{
+    width: 100%;
+    padding: 80px 20px;
+    background: #fff;
+    position: absolute;
+    border-radius: 20px;
+}
+
+.contenedorLoginRegistro form h2{
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #46A2FD;
+}
+
+.contenedorLoginRegistro form input{
+    margin-top: 10px;
+    background: #F2F2F2;
+}
+
+.contenedorLoginRegistro form button{
+    margin-top: 40px;
+    width: 100%;
+}
+
+.formLogin{
+    opacity: 1;
+    display: block;
+}
+
+.formRegistro{
+    display: none;
+}
+
+/* Responsive Desing*/
+
+@media screen and (max-width: 850px){
+    .contenedorTodo{
+        margin-top: 50px;
+    }
+
+    .cajaTrasera{
+        max-width: 350px;
+        height: 300px;
+        flex-direction: column;
+        margin: auto;
+    }
+
+    .cajaTrasera div{
+        margin: 0px;
+        position: absolute;
+    }
+
+    /* Formulario */
+    .contenedorLoginRegistro{
+        top: -10px;
+        left: -5px;
+        margin: auto;
+    }
+
+    .contenedorLoginRegistro form{
+        position: relative;
+    }
+} 

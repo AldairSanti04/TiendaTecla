@@ -1,0 +1,19 @@
+body {
+	font-family: 'Open Sans', sans-serif;
+	background: #eeeeee;
+	color: #000;
+}
+
+img {
+	height: 250px;
+	width: auto;
+}
+
+td img {
+	height: 150px;
+}
+
+.precio {
+	font-weight: bold;
+	font-size: x-large;
+}
