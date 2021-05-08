@@ -38,19 +38,17 @@ formBuscar.addEventListener('submit', event => {
     buscar.value = '';
 })
 
-async function obtenerBusqueda(buscar) {
-    items.innerHTML  =  '' ;
-    paginadorP.innerHTML = '';
-    titulo.textContent = `Resultados para: ${buscar}`;
-    
+async function obtenerBusqueda(buscar) {    
     let resp = await fetch('http://localhost:3000/buscar/'+ buscar);        
     let data = await resp.json();
     let result = data;
 
-    if(result.error === 'No hay productos para tu busqueda'){
-        titulo.textContent = `No hay resultados para: ${buscar}`;
-        items.innerHTML = '<a href="index.html" class="btn btn-outline-primary">Volver a Inicio</a>'
+    if(result.error === 'No hay productos para tu búsqueda'){
+        location.href = "notFound.html";
     } else {
+        items.innerHTML  =  '' ;
+        paginadorP.innerHTML = '';
+        titulo.textContent = `Resultados para: ${buscar}`;
         showProductos(result);
     }
 }

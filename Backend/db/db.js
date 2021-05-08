@@ -36,7 +36,7 @@ async function buscarProductos (palabra){
         let result = data.results;
 
         if(result.length == 0) {
-            throw new Error('No hay productos para tu busqueda');
+            throw new Error('No hay productos para tu búsqueda');
         }
 
         return result;
