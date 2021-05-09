@@ -11,13 +11,15 @@
       form.addEventListener('submit', function (event) {
         if (!form.checkValidity()) {
           event.preventDefault()
+          event.stopPropagation()  
+        } else if (form.checkValidity()) {
+          event.preventDefault()
           event.stopPropagation()
-        }
-        
-          form.classList.add('was-validated')
           location.href = "thanksPage.html";
           localStorage.clear();
-        
+        }
+          form.classList.add('was-validated')
       }, false)
     })
+
 })()
