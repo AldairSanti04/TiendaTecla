@@ -46,8 +46,6 @@ productosLS.forEach(function (producto) {
     listaProductos.appendChild(productoLista);
 });
 
-console.log(totalCompra);
-
 const totalLista = document.createElement('LI');
 totalLista.classList.add('list-group-item', 'd-flex', 'justify-content-between', 'lh-sm');
 

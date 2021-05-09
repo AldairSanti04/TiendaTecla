@@ -40,7 +40,7 @@ app.get('/productos', cors(midd.corsOptions), async function (req, res){
     }
 });
 
-app.get('/buscar/:palabra', async (req, res) => {
+app.get('/buscar/:palabra', cors(midd.corsOptions), async (req, res) => {
     try {
         let result = await db.mandarBusqueda(req.params.palabra);
         res.send(result);
@@ -49,3 +49,23 @@ app.get('/buscar/:palabra', async (req, res) => {
         res.status(404).send(errorMensaje);
     }
 })
+
+app.get('/categorias', cors(midd.corsOptions), async function (req, res){
+    try {
+        let result = await db.mandarCategorias();
+        res.send(result)
+    } catch (error) {
+        let errorMensaje = { error : error.message }
+        res.status(404).send(errorMensaje)
+    }
+});
+
+app.get('/categorias/:idCategoria', cors(midd.corsOptions), async function (req, res){
+    try {
+        let result = await db.mandarProductosXcategoria(req.params.idCategoria);
+        res.send(result)
+    } catch (error) {
+        let errorMensaje = { error : error.message }
+        res.status(404).send(errorMensaje)
+    }
+});

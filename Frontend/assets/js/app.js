@@ -6,6 +6,8 @@ let result;
 const paginadorP = document.getElementById('paginas');
 const titulo = document.getElementById('titulo');
 const formBuscar = document.getElementById('busqueda');
+let categorias;
+const listaDeCategorias = document.getElementById('listaCategorias');
 
 const carro = new Carrito();
 const carrito = document.getElementById('carrito');
@@ -15,6 +17,7 @@ const btnProcesar = document.getElementById('procesarPedido');
 //evento DOMContentLoaded: es disparado cuando el documento HTML ha sido completamente cargado y parseado
 document.addEventListener('DOMContentLoaded', () => {//registra un evento a un objeto en especifico
     getProductos();
+    getCategoriasUI();
     cargarEventos();
     //localStorage.clear();
 })
@@ -27,6 +30,44 @@ function getProductos(){
         result = data;
         showProductos(result);
     })
+}
+
+//Traer Categorías
+function getCategoriasUI(){
+    fetch('http://localhost:3000/categorias')
+    .then(res => res.json())
+    .then(data => {
+        categorias = data;
+        llenarCategorias(categorias);
+    })
+}
+
+//Muestra las categorias
+function llenarCategorias(categorias){
+    categorias.forEach(element => {
+        
+        const categoriaLista = document.createElement('DIV');
+        categoriaLista.innerHTML = `
+        <a class="dropdown-item" onclick="buscarXcategoria('${element.id}','${element.nombre}')">${element.nombre}</a>
+        `;
+        listaDeCategorias.appendChild(categoriaLista);
+    });
+}
+
+//Buscar Productos por Categoria Seleccionada
+async function buscarXcategoria(idCategoria, nombre){
+    let resp = await fetch('http://localhost:3000/categorias/'+ idCategoria);        
+    let data = await resp.json();
+    result = data;
+
+    if(result.error === 'No hay productos para tu búsqueda'){
+        location.href = "notFound.html";
+    } else {
+        items.innerHTML  =  '' ;
+        paginadorP.innerHTML = '';
+        titulo.textContent = `Productos de la categoría: ${nombre}`;
+        showProductos(result);
+    }
 }
 
 //Realizar Busquedas

@@ -17,3 +17,9 @@ td img {
 	font-weight: bold;
 	font-size: x-large;
 }
+
+ul, li {
+	list-style: none;
+	margin-left: 0;
+	padding: 0;
+}
