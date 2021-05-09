@@ -12,11 +12,20 @@ class Producto {
 }
 
 async function getProductos () {
-    let url = "https://api.mercadolibre.com/sites/MLM/search?category=MLM1430";
-    let resp = await fetch(url);
-    let data = await resp.json();
-    let result = data.results;
-    return result
+    try {
+        let url = "https://api.mercadolibre.com/sites/MLM/search?category=MLM1430";
+        let resp = await fetch(url);
+        let data = await resp.json();
+        let result = data.results;
+
+        if(result.length == 0) {
+            throw new Error('No existen productos');
+        }
+
+        return result;
+    } catch (error) {
+        throw error;
+    }
 }
 
 

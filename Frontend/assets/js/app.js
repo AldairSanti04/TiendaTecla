@@ -75,7 +75,6 @@ function previusPage(){
 }
         
 function showProductos(productos){
-    console.log(productos)
     let pageCont =Math.ceil(productos.length/pageSize);
     let pagination = paginate(productos,pageSize,pageNumber);
     pagination.forEach(element => {//ciclo forEach para recorrer elementos
