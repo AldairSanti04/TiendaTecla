@@ -8,16 +8,27 @@ const midd = require('./middleware/midd')
 
 app.use(express.json());
 app.use(cors());
-
-//Endpoints
-app.get('/', cors(midd.corsOptions), function(req, res) {
-    
-})
+app.use(midd.limiter);
 
 //Iniciar el Servidor
 app.listen(process.env.PORT, ()=> {
     console.log(`Servidor iniciado en http://${process.env.HOST}:${process.env.PORT}`);
 });
+
+//middleware para captura de errores globales.
+app.use((err, req, res, next)=> {
+    console.log(err);
+    if (!err){
+        return next();
+    }
+
+    return res.status(500).json('Se produjo un error inesperado, intente nuevamente')
+});
+
+//Endpoints
+app.get('/', cors(midd.corsOptions), function(req, res) {
+    res.send('Inicio de nuestra API');
+})
 
 app.get('/productos', cors(midd.corsOptions), async function (req, res){
     try {
