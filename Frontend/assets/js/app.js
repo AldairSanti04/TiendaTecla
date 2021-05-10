@@ -14,6 +14,10 @@ const carrito = document.getElementById('carrito');
 const listaProductos = document.getElementById('elementosComprar');
 const btnProcesar = document.getElementById('procesarPedido');
 
+let pageNumber=1; 
+let pageSize=12; 
+let pagination;
+
 //evento DOMContentLoaded: es disparado cuando el documento HTML ha sido completamente cargado y parseado
 document.addEventListener('DOMContentLoaded', () => {//registra un evento a un objeto en especifico
     getProductos();
@@ -63,6 +67,7 @@ async function buscarXcategoria(idCategoria, nombre){
     if(result.error === 'No hay productos para tu búsqueda'){
         location.href = "notFound.html";
     } else {
+        pageNumber=1;
         items.innerHTML  =  '' ;
         paginadorP.innerHTML = '';
         titulo.textContent = `Productos de la categoría: ${nombre}`;
@@ -87,6 +92,7 @@ async function obtenerBusqueda(buscar) {
     if(result.error === 'No hay productos para tu búsqueda'){
         location.href = "notFound.html";
     } else {
+        pageNumber=1;
         items.innerHTML  =  '' ;
         paginadorP.innerHTML = '';
         titulo.textContent = `Resultados para: ${buscar}`;
@@ -95,9 +101,6 @@ async function obtenerBusqueda(buscar) {
 }
 
 //Paginación
-let pageNumber=1; 
-let pageSize=12; 
-let pagination;
         
 function paginate(array, page_size, page_number) {
     return array.slice((page_number - 1) * page_size, page_number * page_size);
