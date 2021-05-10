@@ -26,11 +26,11 @@ app.use((err, req, res, next)=> {
 });
 
 //Endpoints
-app.get('/', cors(midd.corsOptions), function(req, res) {
+app.get('/', cors(midd.corsOptions), midd.controlApiKey, (req, res) => {
     res.send('Inicio de nuestra API');
 })
 
-app.get('/productos', cors(midd.corsOptions), async function (req, res){
+app.get('/productos', cors(midd.corsOptions), midd.controlApiKey, async function (req, res){
     try {
         let result = await db.mandarProductos();
         res.send(result)
@@ -40,7 +40,7 @@ app.get('/productos', cors(midd.corsOptions), async function (req, res){
     }
 });
 
-app.get('/buscar/:palabra', cors(midd.corsOptions), async (req, res) => {
+app.get('/buscar/:palabra', cors(midd.corsOptions), midd.controlApiKey, async (req, res) => {
     try {
         let result = await db.mandarBusqueda(req.params.palabra);
         res.send(result);
@@ -50,7 +50,7 @@ app.get('/buscar/:palabra', cors(midd.corsOptions), async (req, res) => {
     }
 })
 
-app.get('/categorias', cors(midd.corsOptions), async function (req, res){
+app.get('/categorias', cors(midd.corsOptions), midd.controlApiKey, async function (req, res){
     try {
         let result = await db.mandarCategorias();
         res.send(result)
@@ -60,7 +60,7 @@ app.get('/categorias', cors(midd.corsOptions), async function (req, res){
     }
 });
 
-app.get('/categorias/:idCategoria', cors(midd.corsOptions), async function (req, res){
+app.get('/categorias/:idCategoria', cors(midd.corsOptions), midd.controlApiKey, async function (req, res){
     try {
         let result = await db.mandarProductosXcategoria(req.params.idCategoria);
         res.send(result)
