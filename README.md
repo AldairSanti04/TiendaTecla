@@ -1,9 +1,11 @@
 # TiendaTecla
 
 ### Dupla 5 🚀
-<em>Santiago Rufino Jorge Aldair
+<em>
+- Santiago Rufino Jorge Aldair
 <br>
-Soto Plaza José Felipe</em>
+- Soto Plaza Josué Felipe
+</em>
 
 ### Swagger
 https://app.swaggerhub.com/apis/TeclaAcademy5/API_Tecla/1.0.0
