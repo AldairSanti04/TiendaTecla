@@ -2,7 +2,7 @@ const rateLimit = require('express-rate-limit');
 
 const corsOptions = {
     origin : function (origin, callback) {
-        if (process.env.LISTABLANCA.indexOf(origin)){
+        if (process.env.LISTABLANCA.indexOf(origin) !== -1){
             callback (null, true)
         }else {
             callback( new Error('Usted no está autorizado a ingresar a mi API por Cors'))
@@ -21,7 +21,6 @@ const controlApiKey = function (err, req, res, next) {
         return next()
     }else {
         let error = {
-            "message": "MATRIX.... System Halted",
             "error": "Debe enviar una Api-Key"  
         }
         return res.status(400).json(error)
