@@ -23,3 +23,9 @@ https://drive.google.com/file/d/1WI518VnWIt9n_r07p6LqVHzsbZLu2E2O/view?usp=shari
 
 - Iniciar Servidor Local
     - `npm run dev` o `npm run produccion` 
+
+- Para ver la Tienda 
+    - En la carpeta Frontend buscar el archivo index.html 
+    - Dar click derecho sobre el archivo index.html
+    - Seleccionar la opción "Open with Live Server"
+    - Listo! Ya puedes interactuar con la Tienda

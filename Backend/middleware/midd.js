@@ -2,7 +2,7 @@ const rateLimit = require('express-rate-limit');
 
 const corsOptions = {
     origin : function (origin, callback) {
-        if (process.env.LISTABLANCA.indexOf(origin) !== -1){
+        if (process.env.LISTABLANCA.indexOf(origin)){
             callback (null, true)
         }else {
             callback( new Error('Usted no está autorizado a ingresar a mi API por Cors'))
