@@ -23,3 +23,7 @@ ul, li {
 	margin-left: 0;
 	padding: 0;
 }
+
+.dropdown:hover>.dropdown-menu {
+	display: block;
+   }
