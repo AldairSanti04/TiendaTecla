@@ -1,0 +1,234 @@
+{
+  "openapi" : "3.0.0",
+  "info" : {
+    "version" : "1.0.0",
+    "title" : "API para Mi Tienda",
+    "description" : "API para la aplicación de Mi Tienda, realizado por la dupla 5",
+    "contact" : {
+      "name" : "Aldair Santiago & Josué Soto",
+      "url" : "https://github.com/AldairSanti04/TiendaTecla.git",
+      "email" : "aldairsanti04@gmail.com"
+    }
+  },
+  "servers" : [ {
+    "description" : "SwaggerHub API Auto Mocking",
+    "url" : "https://virtserver.swaggerhub.com/TeclaAcademy5/API_Tecla/1.0.0"
+  }, {
+    "description" : "Servidor Local",
+    "url" : "https://localhost:3000"
+  } ],
+  "paths" : {
+    "/pruductos" : {
+      "get" : {
+        "description" : "Permite obtener lista de productos ofrecidos de la categoría Ropa, Bolsas y Calzado",
+        "responses" : {
+          "200" : {
+            "description" : "Consulta satisfactoria",
+            "content" : {
+              "application/jason" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "properties" : {
+                      "id" : {
+                        "type" : "string",
+                        "example" : "MLM799097426"
+                      },
+                      "nombre" : {
+                        "type" : "string",
+                        "example" : "Mochila Mujer Moda Impermeable Antirrobo Bolsa Para Mujer"
+                      },
+                      "precio" : {
+                        "type" : "number",
+                        "example" : 455.05
+                      },
+                      "imagen" : {
+                        "type" : "string",
+                        "example" : "http://http2.mlstatic.com/D_910378-MLM45238863115_032021-I.jpg"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "Request Not Found",
+            "content" : {
+              "application/jason" : {
+                "schema" : {
+                  "type" : "string",
+                  "example" : {
+                    "error" : "No existen productos"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/buscar/:palabra" : {
+      "get" : {
+        "description" : "Obtiene los productos que coinciden con la palabra a buscar dentro de la categoría de productos Ropa, Bolsas y Calzado",
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "palabra",
+          "description" : "Se usa para indicar lo que se tiene que buscar",
+          "required" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "playera marvel"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Búsqueda Satisfactoria",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "properties" : {
+                      "id" : {
+                        "type" : "string",
+                        "example" : "MLM851544685"
+                      },
+                      "nombre" : {
+                        "type" : "string",
+                        "example" : "Conjuntos De Short Armadura Avengers Marvel Official Niños"
+                      },
+                      "precio" : {
+                        "type" : "number",
+                        "example" : 161
+                      },
+                      "imagen" : {
+                        "type" : "string",
+                        "example" : "http://http2.mlstatic.com/D_912223-MLM44354264074_122020-O.jpg"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "Request Not Found",
+            "content" : {
+              "application/jason" : {
+                "schema" : {
+                  "type" : "string",
+                  "example" : {
+                    "error" : "No hay productos para tu búsqueda"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/categorias" : {
+      "get" : {
+        "description" : "Permite obtener la lista de categorias hijas de la categoría principal Ropa, Bolsas y Calzado",
+        "responses" : {
+          "200" : {
+            "description" : "Consulta satisfactoria",
+            "content" : {
+              "application/jason" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "properties" : {
+                      "id" : {
+                        "type" : "string",
+                        "example" : "MLM455528"
+                      },
+                      "nombre" : {
+                        "type" : "string",
+                        "example" : "Abrigos"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "Request Not Found",
+            "content" : {
+              "application/jason" : {
+                "schema" : {
+                  "type" : "string",
+                  "example" : {
+                    "error" : "No existen categorías"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/categorias/:idCategoria" : {
+      "get" : {
+        "description" : "Obtiene los productos de la categoría hija de Ropa, Bolsas y Calzado seleccionada",
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "idCategoria",
+          "description" : "Para indicar lo que se tiene que buscar",
+          "required" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "MLM455528"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Búsqueda Satisfactoria",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "properties" : {
+                      "id" : {
+                        "type" : "string",
+                        "example" : "MLM806680035"
+                      },
+                      "nombre" : {
+                        "type" : "string",
+                        "example" : "Chamarra De Mezclilla Hombre Negra / Stretch"
+                      },
+                      "precio" : {
+                        "type" : "number",
+                        "example" : 499.9
+                      },
+                      "imagen" : {
+                        "type" : "string",
+                        "example" : "http://http2.mlstatic.com/D_851127-MLM44039593610_112020-O.jpg"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "Request Not Found",
+            "content" : {
+              "application/jason" : {
+                "schema" : {
+                  "type" : "string",
+                  "example" : {
+                    "error" : "No existen productos para esta categoría"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
