@@ -1,19 +1,15 @@
 const express = require('express');
 const app = express();
 require('dotenv').config();
-const db = require('./db/db');
-const cors = require('cors')
-const midd = require('./middleware/midd')
-
+const cors = require('cors');
+const midd = require('./middleware/midd');
+const sequelize = require('./db/db');
+const MLRoutes = require('./routes/ML.routes');
+const pLocales = require('./routes/productosLocales.routes');
 
 app.use(express.json());
 app.use(cors());
 app.use(midd.limiter);
-
-//Iniciar el Servidor
-app.listen(process.env.PORT, ()=> {
-    console.log(`Servidor iniciado en http://${process.env.HOST}:${process.env.PORT}`);
-});
 
 //middleware para captura de errores globales.
 app.use((err, req, res, next)=> {
@@ -25,47 +21,27 @@ app.use((err, req, res, next)=> {
     return res.status(500).json('Se produjo un error inesperado, intente nuevamente')
 });
 
+//Iniciar el Servidor
+async function inicioServidor() {
+    try {
+        //console.log(process.env.DB_USER)
+        await sequelize.authenticate();
+        console.log('Conexion con la DB correcta!')
+        app.listen(process.env.PORT, function (){
+            console.log(`Sistema iniciado en el puerto ${process.env.PORT}`)
+        })
+    }catch (err){
+        console.log(err)
+        console.log('No se pudo conectar con la DB')
+    }
+}
+
+inicioServidor();
+
 //Endpoints
 app.get('/', cors(midd.corsOptions), (req, res) => {
     res.send('Inicio de nuestra API');
 })
 
-app.get('/productos', cors(midd.corsOptions), async function (req, res){
-    try {
-        let result = await db.mandarProductos();
-        res.send(result)
-    } catch (error) {
-        let errorMensaje = { error : error.message }
-        res.status(404).send(errorMensaje)
-    }
-});
-
-app.get('/buscar/:palabra', cors(midd.corsOptions), async (req, res) => {
-    try {
-        let result = await db.mandarBusqueda(req.params.palabra);
-        res.send(result);
-    } catch(error) {
-        let errorMensaje = { error: error.message }
-        res.status(404).send(errorMensaje);
-    }
-})
-
-app.get('/categorias', cors(midd.corsOptions), async function (req, res){
-    try {
-        let result = await db.mandarCategorias();
-        res.send(result)
-    } catch (error) {
-        let errorMensaje = { error : error.message }
-        res.status(404).send(errorMensaje)
-    }
-});
-
-app.get('/categorias/:idCategoria', cors(midd.corsOptions), async function (req, res){
-    try {
-        let result = await db.mandarProductosXcategoria(req.params.idCategoria);
-        res.send(result)
-    } catch (error) {
-        let errorMensaje = { error : error.message }
-        res.status(404).send(errorMensaje)
-    }
-});
+MLRoutes(app);
+pLocales(app);
