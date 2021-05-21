@@ -10,15 +10,8 @@
 ### Documentación en Swagger
 https://app.swaggerhub.com/apis/TeclaAcademy5/API_Tecla/1.0.0
 
-### Presentación Demo 1
-https://drive.google.com/file/d/1FKJ7oT51wwy6815C7dbYyXvgaQOye4yo/view?usp=sharing
-
-### Feedback Demo 1
-https://drive.google.com/file/d/1WI518VnWIt9n_r07p6LqVHzsbZLu2E2O/view?usp=sharing
-
 ### Sugerencias
 - Clonar Repositorio
-    - `npm init`
     - `npm install`
 
 - Iniciar Servidor Local
