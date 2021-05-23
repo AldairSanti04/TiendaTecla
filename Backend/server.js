@@ -6,10 +6,16 @@ const midd = require('./middleware/midd');
 const sequelize = require('./db/db');
 const MLRoutes = require('./routes/ML.routes');
 const pLocales = require('./routes/productosLocales.routes');
+const vistaProdcutos = require('./MVC/views/view.productos');
+const Productos = require('./db/productos.db')
 
 app.use(express.json());
 app.use(cors());
 app.use(midd.limiter);
+
+app.use(express.static(__dirname + '/public'))
+app.set('view engine', 'ejs')
+app.set('views', __dirname + '/views')
 
 //middleware para captura de errores globales.
 app.use((err, req, res, next)=> {
@@ -25,6 +31,8 @@ app.use((err, req, res, next)=> {
 async function inicioServidor() {
     try {
         //console.log(process.env.DB_USER)
+        await Productos.sync({alter:true});
+        //await Productos.create({nombre_producto: 'Pantalon', precio_producto: 220.85, imagen_producto: 'https://www.garufajeans.com.mx/3693-home_default/pantalon-jeans-furor-maverick-corte-vaquero.jpg', cantidad_inventario: 10})
         await sequelize.authenticate();
         console.log('Conexion con la DB correcta!')
         app.listen(process.env.PORT, function (){
@@ -45,3 +53,4 @@ app.get('/', cors(midd.corsOptions), (req, res) => {
 
 MLRoutes(app);
 pLocales(app);
+vistaProdcutos(app)
