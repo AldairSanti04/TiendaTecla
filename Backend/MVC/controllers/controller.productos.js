@@ -4,7 +4,7 @@ const sequelize = require('../../db/db');
 //Exportamos nuestros Modulos
 
 //Listar Productos
-module.exports.listarDatos = async (data)=> {
+module.exports.listarDatos = async () => {
     try {
     let resultado = await Productos.listar()
     return resultado
@@ -15,7 +15,7 @@ module.exports.listarDatos = async (data)=> {
 }
 
 //Guardar un producto
-module.exports.guardar = async (data)=>{
+module.exports.guardar = async (data) => {
     try {
         await Productos.create(({nombre_producto: data.nombre_producto, precio_producto: data.precio_producto, imagen_producto: data.imagen_producto, cantidad_inventario: data.cantidad_inventario}))
         return true;
@@ -25,7 +25,7 @@ module.exports.guardar = async (data)=>{
 };
 
 //Eliminar un producto
-module.exports.eliminar = async (data)=>{
+module.exports.eliminar = async (data) => {
     try {
         await Productos.destroy({
             where: { id : data}
@@ -37,7 +37,7 @@ module.exports.eliminar = async (data)=>{
 };
 
 //Seleccionar un solo Producto por ID
-module.exports.buscaProducto = async (data)=> {
+module.exports.buscaProducto = async (data) => {
     try {
     let resultado = await Productos.listarProducto(data)
     return resultado
@@ -48,7 +48,7 @@ module.exports.buscaProducto = async (data)=> {
 }
 
 //Modificar Producto
-module.exports.modificar = async(data) => {
+module.exports.modificar = async (data) => {
     console.log(data);
     try {
         await Productos.update({nombre_producto: data.nombre_producto, precio_producto: data.precio_producto, imagen_producto: data.imagen_producto, cantidad_inventario: data.cantidad_inventario}, {where: { id : data.id}})

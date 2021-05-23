@@ -1,5 +1,5 @@
 const {DataTypes, Model} = require('sequelize')
-const sequelize = require('../../db/db')
+const sequelize = require('./db')
 
 //Definir mi Modelo con que voy a trabajar
 const Usuarios = sequelize.define('usuarios', {
@@ -32,22 +32,3 @@ const Usuarios = sequelize.define('usuarios', {
   })
 
   module.exports = Usuarios
-
-  module.exports.existenciaDeUsuario = async (usr)=>{
-    //chequear con la base de datos que exista el usuario
-    let resultado = await Usuarios.findOne({where: {email:usr.email, pass: usr.pass}})
-    if (resultado === null){
-        return false
-    }else {
-        return true
-    }
-  }
-
-  module.exports.recuperarInfoUser = async (usr) => {
-    let resultado = await Usuarios.findAll({where: {email:usr.email, pass: usr.pass}})
-    if (resultado === null){
-      return false
-    }else {
-      return resultado[0]
-    }
-  }

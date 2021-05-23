@@ -1,0 +1,41 @@
+<%- include("cabeceras/header") %>
+
+<!-- formulario de bootstrap -->
+<body>
+
+    <h1 class="text-center">LOGIN</h1>
+
+    <div class="container mt-4">
+      <div class="card border-secondary">
+        <div class="text-center card-header"><h3>Bienvenido</h3></div>
+        <div class="card-body">
+          
+          <!-- referencia a ruta guardar creacion de usuario se hace un POST-->
+          <form id="loginForm" method="POST">
+            <div class="mb-3">
+              <label for="correoUser" class="form-label">Correo</label>
+              <input required type="text" class="form-control" id="correoUser" name="correoUser" tabindex="1"/>
+            </div>
+
+            <div class="mb-3">
+                <label for="passUser" class="form-label">Contraseña</label>
+                <input required type="text" class="form-control" id="passUser" name="passUser" tabindex="2"/>
+            </div>
+
+            <button type="submit" class="btn btn-primary" tabindex="3">
+              Iniciar Sesión
+            </button>
+            <a href="/registrarse" class="btn btn-secondary">Crear Cuenta</a>
+          </form>
+
+        </div>
+      </div>
+    </div>
+    <script src="js/login.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

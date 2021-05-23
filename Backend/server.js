@@ -7,6 +7,7 @@ const sequelize = require('./db/db');
 const MLRoutes = require('./routes/ML.routes');
 const pLocales = require('./routes/productosLocales.routes');
 const vistaProductos = require('./MVC/views/view.productos');
+const vistaUsuarios = require('./MVC/views/view.usuarios');
 const Productos = require('./MVC/models/model.productos');
 const Usuarios = require('./MVC/models/model.usuarios');
 
@@ -35,7 +36,7 @@ async function inicioServidor() {
         await Productos.sync({alter:true});
         await Usuarios.sync({alter:true});
         //await Productos.create({nombre_producto: 'Pantalon', precio_producto: 220.85, imagen_producto: 'https://www.garufajeans.com.mx/3693-home_default/pantalon-jeans-furor-maverick-corte-vaquero.jpg', cantidad_inventario: 10})
-        //await Usuarios.create({nombres: 'Jorge Aldair', apellidos: 'Santiago Rufino', email: 'aldairsanti04@gmail.com', usuario: 'AldairSanti04', pass: 'holitas123', tipo_usuario: 1})
+        //await Usuarios.create({nombres: 'Fulanito', apellidos: 'Perez', email: 'contacto@contacto.com', usuario: 'FulanitoP14', pass: 'contrauser12', tipo_usuario: 2})
         await sequelize.authenticate();
         console.log('Conexion con la DB correcta!')
         app.listen(process.env.PORT, function (){
@@ -56,4 +57,5 @@ app.get('/', cors(midd.corsOptions), (req, res) => {
 
 MLRoutes(app);
 pLocales(app);
-vistaProductos(app)
+vistaProductos(app);
+vistaUsuarios(app);
