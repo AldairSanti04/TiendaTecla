@@ -1,0 +1,64 @@
+  
+<%- include("cabeceras/header") %>
+
+  <!--tabla de bootstrap -->
+<body>
+
+    <h1 class="text-center">Listado de Productos</h1>
+
+
+  <div class="container">
+    <!-- referencia a ruta create-->
+    <div class="d-flex flex-row-reverse">
+      <a href="/agregar" class="btn btn-outline-primary mt-4"><i class='bx bxs-plus-circle bx-md'></i></a>
+    </div>
+    
+    
+    <table class="table align-middle table-dark table-striped text-center mt-4">
+      <thead>
+        <tr class="bg-primary text-white">
+          <th scope="col">Id</th>
+          <th scope="col">Producto</th>
+          <th scope="col">Precio</th>
+          <th scope="col">Imagen</th>
+          <th scope="col">Inventario</th>
+          <th scope="col">ACCIONES</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- foreach para recibir resultados de la tabla usuarios -->
+        <% results.forEach((producto)=>{ %>
+          <tr>
+            <td>
+              <%= producto.id %>
+            </td>
+            <td>
+              <%= producto.nombre_producto %>
+            </td>
+            <td>
+                <%= producto.precio_producto %>
+            </td>
+            <td>
+              <img width="100" src="<%= producto.imagen_producto %>">
+            </td>
+            <td>
+                <%= producto.cantidad_inventario %>
+              </td>
+            <!-- referencia a ruta editar y eliminar usuario-->
+            
+            <td>
+                <a href="/modificar/<%= producto.id %>" class="btn btn-outline-info"><i class='bx bxs-edit'></i></a>
+                <a onclick="eliminar('<%= producto.id %>')" class="btn btn-outline-danger"><i class='bx bxs-trash-alt'></i></a>
+            </td>
+          </tr>
+          <% }) %>
+      </tbody>
+    </table>
+  </div>
+  <script src="js/listar.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
