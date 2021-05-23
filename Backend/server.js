@@ -6,8 +6,9 @@ const midd = require('./middleware/midd');
 const sequelize = require('./db/db');
 const MLRoutes = require('./routes/ML.routes');
 const pLocales = require('./routes/productosLocales.routes');
-const vistaProdcutos = require('./MVC/views/view.productos');
-const Productos = require('./db/productos.db')
+const vistaProductos = require('./MVC/views/view.productos');
+const Productos = require('./MVC/models/model.productos');
+const Usuarios = require('./MVC/models/model.usuarios');
 
 app.use(express.json());
 app.use(cors());
@@ -32,7 +33,9 @@ async function inicioServidor() {
     try {
         //console.log(process.env.DB_USER)
         await Productos.sync({alter:true});
+        await Usuarios.sync({alter:true});
         //await Productos.create({nombre_producto: 'Pantalon', precio_producto: 220.85, imagen_producto: 'https://www.garufajeans.com.mx/3693-home_default/pantalon-jeans-furor-maverick-corte-vaquero.jpg', cantidad_inventario: 10})
+        //await Usuarios.create({nombres: 'Jorge Aldair', apellidos: 'Santiago Rufino', email: 'aldairsanti04@gmail.com', usuario: 'AldairSanti04', pass: 'holitas123', tipo_usuario: 1})
         await sequelize.authenticate();
         console.log('Conexion con la DB correcta!')
         app.listen(process.env.PORT, function (){
@@ -53,4 +56,4 @@ app.get('/', cors(midd.corsOptions), (req, res) => {
 
 MLRoutes(app);
 pLocales(app);
-vistaProdcutos(app)
+vistaProductos(app)

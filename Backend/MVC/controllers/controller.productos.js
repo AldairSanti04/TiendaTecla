@@ -1,14 +1,12 @@
 const Productos = require('../models/model.productos')
 const sequelize = require('../../db/db');
-const newProducto = require('../../db/productos.db')
 
 //Exportamos nuestros Modulos
 
 //Listar Productos
 module.exports.listarDatos = async (data)=> {
     try {
-    let rst = new Productos (data)
-    let resultado = await rst.listar()
+    let resultado = await Productos.listar()
     return resultado
     }catch (err) {
         console.log('Error desde el modelo' + err)
@@ -19,7 +17,7 @@ module.exports.listarDatos = async (data)=> {
 //Guardar un producto
 module.exports.guardar = async (data)=>{
     try {
-        await newProducto.create(({nombre_producto: data.nombre_producto, precio_producto: data.precio_producto, imagen_producto: data.imagen_producto, cantidad_inventario: data.cantidad_inventario}))
+        await Productos.create(({nombre_producto: data.nombre_producto, precio_producto: data.precio_producto, imagen_producto: data.imagen_producto, cantidad_inventario: data.cantidad_inventario}))
         return true;
     }catch (err){
         throw new Error ('Ocurrio un problema al realizar el alta en la DB')
@@ -29,7 +27,7 @@ module.exports.guardar = async (data)=>{
 //Eliminar un producto
 module.exports.eliminar = async (data)=>{
     try {
-        await newProducto.destroy({
+        await Productos.destroy({
             where: { id : data}
         })
         return true;
@@ -41,8 +39,7 @@ module.exports.eliminar = async (data)=>{
 //Seleccionar un solo Producto por ID
 module.exports.buscaProducto = async (data)=> {
     try {
-    let rst = new Productos(data)
-    let resultado = await rst.listarProducto(data)
+    let resultado = await Productos.listarProducto(data)
     return resultado
     }catch (err) {
         console.log('Error desde el modelo' + err)
@@ -54,7 +51,7 @@ module.exports.buscaProducto = async (data)=> {
 module.exports.modificar = async(data) => {
     console.log(data);
     try {
-        await newProducto.update({nombre_producto: data.nombre_producto, precio_producto: data.precio_producto, imagen_producto: data.imagen_producto, cantidad_inventario: data.cantidad_inventario}, {where: { id : data.id}})
+        await Productos.update({nombre_producto: data.nombre_producto, precio_producto: data.precio_producto, imagen_producto: data.imagen_producto, cantidad_inventario: data.cantidad_inventario}, {where: { id : data.id}})
         return true;
     }catch (err){
         throw new Error ('No se pudo actualizar el producto seleccionado')
