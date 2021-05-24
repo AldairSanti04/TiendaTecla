@@ -25,20 +25,15 @@ form.addEventListener('submit', async (event) => {
             "cantidad_inventario": cantidad.value
         })
     })
-
-    alert("Producto Actualizado Correctamente")
-    newFormulario()
-    location.href = '/listado'
+        if(resultado.status == 400){
+            alert("No tienes permiso para modificar");
+            location.href = '/listado';
+        } else {
+            alert("Producto Actualizado Correctamente");
+            location.href = '/listado';
+        }
     } catch (error) {
-        console.log(error)
+        alert("No tienes permiso para modificar");
+        location.href = '/listado';
     }
-
 })
-
-function newFormulario()
-{
-    nombre.value = ""
-    imagen.value = ""
-    precio.value = ""
-    cantidad.value = ""
-}

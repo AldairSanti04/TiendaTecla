@@ -8,7 +8,8 @@ let cantidad = document.getElementById('producto_cantidad');
 form.addEventListener('submit', async (event) => {
     event.preventDefault();
     let data = await JSON.parse(localStorage.getItem('dataUsuario'))
-    let resultado = await fetch("http://localhost:3000/guardar", { // /nuevousuarios
+    try {
+        let resultado = await fetch("http://localhost:3000/guardar", { // /nuevousuarios
         method: 'post',
         headers: {
             "Accept": "application/json, text/plain, *,*",
@@ -22,9 +23,16 @@ form.addEventListener('submit', async (event) => {
             "cantidad_inventario": cantidad.value
         })
     })
-
-    alert("Producto Agregado Correctamente")
-    newFormulario()
+        if(resultado.status == 400){
+            alert("No tienes permiso para agregar productos");
+        } else {
+            alert("Producto Agregado Correctamente");
+            newFormulario();
+        }
+    } catch (error) {
+        alert("No tienes permiso para agregar productos");
+        location.href = '/listado';
+    }
 })
 
 function newFormulario()
