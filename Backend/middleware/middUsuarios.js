@@ -2,14 +2,12 @@ const jwt = require('jsonwebtoken')
 
 module.exports.verificacionUsuario = async (req,res,next)=>{
     let token = req.headers.authorization
-    console.log(token)
     if (token != undefined){
-        let tokenchk = token.split(' ')[1]
-        let resultado = jwt.verify(tokenchk, process.env.SECRET_KEY)
-        //console.log(resultado)
-        if (resultado){
-            return next
-        }else {
+        try {
+            let tokenchk = token.split(' ')[1]
+            let resultado = jwt.verify(tokenchk, process.env.SECRET_KEY)
+            return next()
+        } catch (error) {
             throw new Error ('Token no valido')
         }
     }else {

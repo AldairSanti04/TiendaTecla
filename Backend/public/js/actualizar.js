@@ -8,11 +8,14 @@ let idData = document.getElementById('idProducto')
 //Manda el post
 form.addEventListener('submit', async (event) => {
     event.preventDefault();
-    let resultado = await fetch("http://localhost:3000/actualizar", { // /nuevousuarios
+    let data = await JSON.parse(localStorage.getItem('dataUsuario'))
+    try {
+        let resultado = await fetch("http://localhost:3000/actualizar", { // /nuevousuarios
         method: 'post',
         headers: {
             "Accept": "application/json, text/plain, *,*",
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            'Authorization': `Bearer ${data.token}`
         },
         body: JSON.stringify( {
             "id": parseInt(idData.textContent),
@@ -25,6 +28,11 @@ form.addEventListener('submit', async (event) => {
 
     alert("Producto Actualizado Correctamente")
     newFormulario()
+    location.href = '/listado'
+    } catch (error) {
+        console.log(error)
+    }
+
 })
 
 function newFormulario()

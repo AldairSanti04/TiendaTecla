@@ -7,11 +7,13 @@ let cantidad = document.getElementById('producto_cantidad');
 //Manda el post
 form.addEventListener('submit', async (event) => {
     event.preventDefault();
+    let data = await JSON.parse(localStorage.getItem('dataUsuario'))
     let resultado = await fetch("http://localhost:3000/guardar", { // /nuevousuarios
         method: 'post',
         headers: {
             "Accept": "application/json, text/plain, *,*",
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            'Authorization': `Bearer ${data.token}`
         },
         body: JSON.stringify( {
             "nombre_producto": nombre.value,

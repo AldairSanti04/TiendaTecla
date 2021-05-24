@@ -49,7 +49,6 @@ module.exports.buscaProducto = async (data) => {
 
 //Modificar Producto
 module.exports.modificar = async (data) => {
-    console.log(data);
     try {
         await Productos.update({nombre_producto: data.nombre_producto, precio_producto: data.precio_producto, imagen_producto: data.imagen_producto, cantidad_inventario: data.cantidad_inventario}, {where: { id : data.id}})
         return true;

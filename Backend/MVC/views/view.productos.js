@@ -1,10 +1,11 @@
 const sequelize = require('../../db/db')
 const controladorProductos = require('../controllers/controller.productos')
+const middUser = require('../../middleware/middUsuarios')
 
 module.exports = async (app)=> {
     
     //ruta para enlistar productos
-    app.get('/listado' , async (req,res)=>{
+    app.get('/listado', async (req,res)=>{
         let data = req.params.metodo
         try{
             let resultado = await controladorProductos.listarDatos(data)
@@ -16,11 +17,11 @@ module.exports = async (app)=> {
     })
 
     //Rutas para agregar y guardar un nuevo producto
-    app.get('/agregar' , async (req,res)=>{
+    app.get('/agregar', async (req,res)=>{
         res.render('agregar');
     })
 
-    app.post('/guardar', async (req, res)=>{
+    app.post('/guardar', middUser.verificacionUsuario, async (req, res)=>{
         let resultado = await controladorProductos.guardar(req.body);
         if(resultado){
             console.log('Producto Agregado Correctamente');
@@ -40,26 +41,27 @@ module.exports = async (app)=> {
         }
     })
 
-    app.post('/actualizar', async (req, res)=>{
-        let resultado = await controladorProductos.modificar(req.body);
-        if(resultado){
-            console.log('Producto Actualizado Correctamente');
-            res.redirect('/listado');
+    app.post('/actualizar', middUser.verificacionUsuario, async (req, res)=>{
+        try {
+            let resultado = await controladorProductos.modificar(req.body);
+            if(resultado){
+                res.redirect('/listado');
+            }
+        } catch (error) {
+            res.status(400).json('No se puedo eliminar el producto')
         }
     });
 
     //ruta para Eliminar registro
-    app.get('/eliminar/:id', async (req, res) => {
+    app.get('/eliminar/:id', middUser.verificacionUsuario, async (req, res) => {
         let data = req.params.id
         try{
             let resultado = await controladorProductos.eliminar(data)
             if(resultado){
-                console.log('Producto Eliminado Correctamente');
                 res.redirect('/listado');
             }
         }catch (err){
-            console.log(err)
-            res.status(400).json('Error en la consulta')
+            res.status(400).json('No se puedo eliminar el producto')
         }
     })
 

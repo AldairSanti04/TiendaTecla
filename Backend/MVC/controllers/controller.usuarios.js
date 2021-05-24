@@ -6,7 +6,9 @@ const jwt = require('jsonwebtoken');
 module.exports.generaToken = async (data)=>{
     try {
         let resultado = jwt.sign({
-            data}, process.env.SECRET_KEY
+            exp: Math.floor(Date.now() / 1000) + (60 * 60),
+            data
+        }, process.env.SECRET_KEY
         )
         return resultado
     }catch (err){

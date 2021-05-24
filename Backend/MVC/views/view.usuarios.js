@@ -1,10 +1,11 @@
 const sequelize = require('../../db/db')
 const controladorUsuarios = require('../controllers/controller.usuarios')
+const middUser = require('../../middleware/middUsuarios')
 
 module.exports = async (app)=> {
     
     //Ruta para Login
-    app.get('/login' , async (req,res)=>{
+    app.get('/login', async (req,res)=>{
         res.render('login')
     })
 
@@ -21,7 +22,12 @@ module.exports = async (app)=> {
             }
         }catch (err){
             console.log(err)
-            res.status(400).json('Usuario o contrasena incorrecta')
+            res.status(400).json('Usuario o contraseña incorrecta')
         }
+    })
+
+    // Ruta para usuario administrador
+    app.get('/index', async (req,res)=>{
+        res.render('index');
     })
 }

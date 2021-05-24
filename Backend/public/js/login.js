@@ -38,15 +38,19 @@ form.addEventListener('submit', async (event) => {
         })
     })
     let vuelta = await resultado.json();
-    let data = await Usuarios.recuperaUsuario();
-    data.tipo = vuelta.user.tipo_usuario;
-    data.usuario = vuelta.user.usuario;
-    data.nombre = vuelta.user.nombres + " " + vuelta.user.apellidos;
-    data.token = vuelta.token;
-    Usuarios.guardaUsuario(data);
-    if(data.tipo === 1){
-        location.href = '/index'
+    if(vuelta === 'Usuario o contraseña incorrecta'){
+        alert('Usuario o contraseña incorrecta')
     } else {
-        location.href = 'https://mitiendatecla.herokuapp.com/'
+        let data = await Usuarios.recuperaUsuario();
+        data.tipo = vuelta.user.tipo_usuario;
+        data.usuario = vuelta.user.usuario;
+        data.nombre = vuelta.user.nombres + " " + vuelta.user.apellidos;
+        data.token = vuelta.token;
+        Usuarios.guardaUsuario(data);
+        if(data.tipo === 1){
+            location.href = '/index'
+        } else {
+            location.href = 'https://mitiendatecla.herokuapp.com/'
+        }
     }
 })
