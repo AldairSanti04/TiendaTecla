@@ -6,7 +6,12 @@ module.exports = async (app)=> {
     
     //Ruta para Login
     app.get('/login', async (req,res)=>{
-        res.render('login')
+        try{
+            res.render('login');
+        }catch (err){
+            console.log(err)
+            res.estatus(400).json('No se puede mostrar')
+        }
     })
 
     app.post('/login', async (req,res)=>{
@@ -28,6 +33,11 @@ module.exports = async (app)=> {
 
     // Ruta para usuario administrador
     app.get('/index', async (req,res)=>{
-        res.render('index');
+        try{
+            res.render('index');
+        }catch (err){
+            console.log(err)
+            res.estatus(400).json('No se puede mostrar')
+        }
     })
 }

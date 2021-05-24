@@ -18,7 +18,12 @@ module.exports = async (app)=> {
 
     //Rutas para agregar y guardar un nuevo producto
     app.get('/agregar', async (req,res)=>{
-        res.render('agregar');
+        try{
+            res.render('agregar');
+        }catch (err){
+            console.log(err)
+            res.estatus(400).json('No se puede mostrar')
+        }
     })
 
     app.post('/guardar', middUser.verificacionUsuario, async (req, res)=>{
