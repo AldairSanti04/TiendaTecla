@@ -17,7 +17,7 @@ module.exports.listarDatos = async () => {
 //Guardar un producto
 module.exports.guardar = async (data) => {
     try {
-        await Productos.create(({nombre_producto: data.nombre_producto, precio_producto: data.precio_producto, imagen_producto: data.imagen_producto, cantidad_inventario: data.cantidad_inventario}))
+        await Productos.create(({nombre_producto: data.nombre_producto, precio_producto: data.precio_producto, imagen_producto: data.imagen_producto, cantidad_inventario: data.cantidad_inventario, categoria: data.categoria}))
         return true;
     }catch (err){
         throw new Error ('Ocurrio un problema al realizar el alta en la DB')

@@ -3,6 +3,11 @@ const sequelize = require('../../db/db')
 
 //Definir mi Modelo con que voy a trabajar
 const Usuarios = sequelize.define('usuarios', {
+    id : {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+    },
     nombres : {
         type: DataTypes.STRING(60),
         allowNull: false,

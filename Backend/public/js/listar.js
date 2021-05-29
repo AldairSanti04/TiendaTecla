@@ -1,28 +1,49 @@
 async function eliminar(id) {
-    if(confirm("¿Seguro que quieres eliminar el Producto?")){
-        let data = await JSON.parse(localStorage.getItem('dataUsuario'))
-        try {
-            let resultado = await fetch("http://localhost:3000/eliminar/" + id, { // /nuevousuarios
-            method: 'get',
-            headers: {
-                "Accept": "application/json, text/plain, *,*",
-                "Content-Type": "application/json",
-                'Authorization': `Bearer ${data.token}`
+    let data = await JSON.parse(localStorage.getItem('dataUsuario'))
+    swal({
+        title: "¿Seguro que quieres eliminar el Producto?",
+        text: "Una vez eliminado no lo puedes recuperar",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+            try {
+                let resultado = fetch("http://localhost:3000/eliminar/" + id, { // /nuevousuarios
+                method: 'get',
+                headers: {
+                    "Accept": "application/json, text/plain, *,*",
+                    "Content-Type": "application/json",
+                    'Authorization': `Bearer ${data.token}`
+                }
+                })
+                if(resultado.status == 400){
+                    swal({
+                        title: "No tienes permiso para eliminar productos" ,
+                        icon: "error",
+                      });
+                } else {
+                    swal({
+                        title: "Producto Eliminado Correctamente",
+                        icon: "success",
+                    });
+                    setTimeout(() => {
+                        location.href = '/listado'
+                    }, 3000);
+                }
+    
+            } catch (error) {
+                swal({
+                    title: "No tienes permiso para eliminar productos",
+                    icon: "error",
+                  });
             }
-            })
-            if(resultado.status == 400){
-                alert("No tienes permiso para eliminar productos");
-                location.href = '/listado';
-            } else {
-                alert("Producto Eliminado Correctamente");
-                location.href = '/listado';
-            }
-
-        } catch (error) {
-            alert("No tienes permiso para eliminar productos");
-            location.href = '/listado';
+        } else {
+            swal({
+                title: "Producto no eliminado",
+                icon: "success",
+              });
         }
-    } else {
-        location.href = '/listado'
-    }
+      });
 }

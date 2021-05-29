@@ -26,7 +26,7 @@ module.exports = async (app)=> {
         }
     })
 
-    app.post('/guardar', middUser.verificacionUsuario, async (req, res)=>{
+    app.post('/guardar', middUser.verificacionUsuario, middUser.chkDatosAltaProducto, async (req, res)=>{
         let resultado = await controladorProductos.guardar(req.body);
         if(resultado){
             console.log('Producto Agregado Correctamente');
@@ -46,7 +46,7 @@ module.exports = async (app)=> {
         }
     })
 
-    app.post('/actualizar', middUser.verificacionUsuario, async (req, res)=>{
+    app.post('/actualizar', middUser.verificacionUsuario, middUser.chkDatosModificarProducto, async (req, res)=>{
         try {
             let resultado = await controladorProductos.modificar(req.body);
             if(resultado){

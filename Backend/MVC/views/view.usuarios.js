@@ -14,7 +14,7 @@ module.exports = async (app)=> {
         }
     })
 
-    app.post('/login', async (req,res)=>{
+    app.post('/login', middUser.chkDatosLogin, async (req,res)=>{
         let usuario = req.body
         try {
             let resultado = await controladorUsuarios.chequearUsuario(usuario)

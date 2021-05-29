@@ -3,6 +3,28 @@ let nombre = document.getElementById('producto_name');
 let precio = document.getElementById('producto_precio');
 let imagen = document.getElementById('producto_imagen');
 let cantidad = document.getElementById('producto_cantidad');
+let categoria = document.getElementById('categoria');
+
+getCategorias();
+
+function getCategorias(){
+    fetch('http://localhost:3000/categorias')
+    .then(res => res.json())
+    .then(data => {
+        categorias = data;
+        llenarCategorias(categorias);
+    })
+}
+
+function llenarCategorias(categorias){
+    categorias.forEach(element => {
+        
+        const categoriaOption = document.createElement('OPTION');
+        categoriaOption.textContent = `${element.nombre}`;
+        categoriaOption.value = `${element.nombre}`;
+        categoria.appendChild(categoriaOption);
+    });
+}
 
 //Manda el post
 form.addEventListener('submit', async (event) => {
@@ -20,18 +42,27 @@ form.addEventListener('submit', async (event) => {
             "nombre_producto": nombre.value,
             "precio_producto": precio.value,
             "imagen_producto": imagen.value,
-            "cantidad_inventario": cantidad.value
+            "cantidad_inventario": cantidad.value,
+            "categoria": categoria.value
         })
     })
         if(resultado.status == 400){
-            alert("No tienes permiso para agregar productos");
+            swal({
+                title: "No tienes permiso para agregar productos",
+                icon: "error",
+              });
         } else {
-            alert("Producto Agregado Correctamente");
+            swal({
+                title: "Producto Agregado Correctamente",
+                icon: "succes",
+              });
             newFormulario();
         }
     } catch (error) {
-        alert("No tienes permiso para agregar productos");
-        location.href = '/listado';
+        swal({
+            title: "No tienes permiso para agregar productos",
+            icon: "error",
+          });
     }
 })
 

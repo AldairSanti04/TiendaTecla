@@ -12,7 +12,7 @@
       </div>
 
       <div class="card border-secondary">
-        <div class="card-header"><span id="idProducto"><%= result.id %></span> <%= result.nombre_producto %> </div>
+        <div class="card-header"><span class="d-none" id="idProducto"><%= result.id %></span> <%= result.nombre_producto %> </div>
         <div class="card-body">
           
           <!-- referencia a ruta guardar creacion de usuario se hace un POST-->
@@ -24,7 +24,7 @@
 
             <div class="mb-3">
                 <label for="producto_precio" class="form-label">Precio</label>
-                <input required type="text" class="form-control" value="<%= result.precio_producto %>" id="producto_precio" name="producto_precio" tabindex="2"/>
+                <input required type="number" step="any" class="form-control" value="<%= result.precio_producto %>" id="producto_precio" name="producto_precio" tabindex="2"/>
             </div>
 
             <div class="mb-3">
@@ -33,11 +33,18 @@
             </div>
 
             <div class="mb-3">
-                <label for="producto_cantidad" class="form-label">Cantidad</label>
-                <input required type="number" min="1" class="form-control" value="<%= result.cantidad_inventario %>" id="producto_cantidad" name="producto_cantidad" tabindex="4"/>
+              <label for="categoria" class="form-label">Categoría</label>
+              <select required class="form-select" id="categoria" name="categoria" tabindex="4">
+                <option value="<%= result.categoria %>"><%= result.categoria %></option>
+              </select>
             </div>
 
-            <button type="submit" class="btn btn-primary" tabindex="5">
+            <div class="mb-3">
+                <label for="producto_cantidad" class="form-label">Cantidad</label>
+                <input required type="number" min="1" class="form-control" value="<%= result.cantidad_inventario %>" id="producto_cantidad" name="producto_cantidad" tabindex="5"/>
+            </div>
+
+            <button type="submit" class="btn btn-primary" tabindex="6">
               Guardar
             </button>
             <a href="/listado" class="btn btn-secondary">Cancelar</a>
@@ -46,6 +53,7 @@
         </div>
       </div>
     </div>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/actualizar.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"

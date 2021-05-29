@@ -3,12 +3,17 @@ const sequelize = require('../../db/db')
 
 //Definir mi Modelo con que voy a trabajar
 const Productos = sequelize.define('productos', {
+    id : {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+    },
     nombre_producto : {
         type: DataTypes.STRING(50),
         allowNull: false,
     },
     precio_producto: {
-        type: DataTypes.FLOAT(),
+        type: DataTypes.DECIMAL(15,2),
         allowNull: false,
     },
     imagen_producto: {
@@ -16,9 +21,13 @@ const Productos = sequelize.define('productos', {
       allowNull: false
     },
     cantidad_inventario: {
-      type: DataTypes.INTEGER(),
+      type: DataTypes.INTEGER,
       allowNull: false
-    }
+    },
+    categoria: {
+      type: DataTypes.STRING(50),
+      allowNull: false
+    },
   },{
     timestamps: false
   })
