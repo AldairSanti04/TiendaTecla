@@ -54,7 +54,7 @@ form.addEventListener('submit', async (event) => {
         } else {
             swal({
                 title: "Producto Agregado Correctamente",
-                icon: "succes",
+                icon: "success",
               });
             newFormulario();
         }

@@ -6,7 +6,7 @@ module.exports = {
 
     modeloLogin : Joi.object().keys({
         email:Joi.string().email().required(),
-        pass: Joi.string().regex(/^[a-zA-Z0-9]{6,16}$/).min(6).required()
+        pass: Joi.string().pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')).required()
     }).with('email', 'pass'),
 
     modeloAltaProducto : Joi.object().keys({

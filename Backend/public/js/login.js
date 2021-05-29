@@ -38,8 +38,11 @@ form.addEventListener('submit', async (event) => {
         })
     })
     let vuelta = await resultado.json();
-    if(vuelta === 'Usuario o contraseña incorrecta'){
-        alert('Usuario o contraseña incorrecta')
+    if(vuelta.error){
+        swal({
+            title: `${vuelta.error}`,
+            icon: "error",
+          });
     } else {
         let data = await Usuarios.recuperaUsuario();
         data.tipo = vuelta.user.tipo_usuario;

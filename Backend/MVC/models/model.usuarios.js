@@ -40,6 +40,16 @@ const Usuarios = sequelize.define('usuarios', {
 
   module.exports.existenciaDeUsuario = async (usr)=>{
     //chequear con la base de datos que exista el usuario
+    let resultado = await Usuarios.findOne({where: {email:usr.email}})
+    if (resultado === null){
+        return false
+    }else {
+        return true
+    }
+  }
+
+  module.exports.usuarioAutenticado = async (usr)=>{
+    //chequear con la base de datos que exista el usuario
     let resultado = await Usuarios.findOne({where: {email:usr.email, pass: usr.pass}})
     if (resultado === null){
         return false

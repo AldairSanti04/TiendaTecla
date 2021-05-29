@@ -9,7 +9,6 @@ module.exports = async (app)=> {
         try{
             res.render('login');
         }catch (err){
-            console.log(err)
             res.estatus(400).json('No se puede mostrar')
         }
     })
@@ -23,11 +22,10 @@ module.exports = async (app)=> {
                 let tokenResult = await controladorUsuarios.generaToken(usuario)
                 res.json({ token: tokenResult, user: usuarioInfo })
             }else {
-                throw new Error (err)
+                throw new Error ("Contraseña Incorrecta")
             }
         }catch (err){
-            console.log(err)
-            res.status(400).json('Usuario o contraseña incorrecta')
+            res.status(400).json({ error: err.message})
         }
     })
 
@@ -36,7 +34,6 @@ module.exports = async (app)=> {
         try{
             res.render('index');
         }catch (err){
-            console.log(err)
             res.estatus(400).json('No se puede mostrar')
         }
     })

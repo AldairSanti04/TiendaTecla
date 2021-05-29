@@ -22,13 +22,14 @@ module.exports.chequearUsuario = async (usr)=>{
     try {
         let resultado =  await Usuarios.existenciaDeUsuario(usrchk)
         if (resultado) {
-            return resultado
+            let result =  await Usuarios.usuarioAutenticado(usrchk)
+            return result
         }else {
-            throw new Error ('No existe el usuario')
+            throw new Error ('Contraseña Incorrecta')
         }
     }catch (err){
         console.log(err)
-        throw new Error (' no semuy bien que paso')
+        throw new Error ('No existe el usuario')
     }
 }
 
