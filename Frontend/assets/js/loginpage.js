@@ -7,6 +7,7 @@ class Usuarios {
     constructor(email, pass){
         this.email = email,
         this.pass = pass,
+        this.id = "",
         this.nombre = "",
         this.usuario = "",
         this.tipo = "",
@@ -50,6 +51,7 @@ formL.addEventListener('submit', async (event) => {
         data.usuario = vuelta.user.usuario;
         data.nombre = vuelta.user.nombres + " " + vuelta.user.apellidos;
         data.token = vuelta.token;
+        data.id = vuelta.user.id;
         Usuarios.guardaUsuario(data);
         location.href = "http://127.0.0.1:5500/Frontend/index.html"
     }

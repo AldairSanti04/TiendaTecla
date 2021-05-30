@@ -49,15 +49,21 @@ productosLS.forEach(function (producto) {
 const totalLista = document.createElement('LI');
 totalLista.classList.add('list-group-item', 'd-flex', 'justify-content-between', 'lh-sm');
 
-const totalTexto = document.createElement('SPAN')
-totalTexto.textContent = 'Total (MXN)';
 
 const muestraTotal = document.createElement('STRONG')
-muestraTotal.textContent = `$ ${totalCompra}`;
+
+const totalTexto = document.createElement('P')
+totalTexto.textContent = 'Total (MXN) $ ';
+
+const totalito = document.createElement('SPAN')
+totalito.setAttribute('id', 'totalCompra')
+totalito.textContent = `${totalCompra}`;
+
+totalTexto.appendChild(totalito)
+muestraTotal.appendChild(totalTexto)
 
 cantidadProductos.textContent = `${productosLS.length}`
 
-totalLista.appendChild(totalTexto);
 totalLista.appendChild(muestraTotal);
 
 listaProductos.appendChild(totalLista);

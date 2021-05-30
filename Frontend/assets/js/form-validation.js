@@ -15,8 +15,8 @@
         } else if (form.checkValidity()) {
           event.preventDefault()
           event.stopPropagation()
-          location.href = "thanksPage.html";
-          localStorage.clear();
+          // location.href = "thanksPage.html";
+          // localStorage.clear();
         }
           form.classList.add('was-validated')
       }, false)

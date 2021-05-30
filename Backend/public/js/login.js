@@ -6,6 +6,7 @@ class Usuarios {
     constructor(email, pass){
         this.email = email,
         this.pass = pass,
+        this.id = "",
         this.nombre = "",
         this.usuario = "",
         this.tipo = "",
@@ -46,6 +47,7 @@ form.addEventListener('submit', async (event) => {
     } else {
         let data = await Usuarios.recuperaUsuario();
         data.tipo = vuelta.user.tipo_usuario;
+        data.id = vuelta.user.id;
         data.usuario = vuelta.user.usuario;
         data.nombre = vuelta.user.nombres + " " + vuelta.user.apellidos;
         data.token = vuelta.token;

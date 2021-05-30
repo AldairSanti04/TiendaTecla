@@ -52,7 +52,7 @@
 
                 <div class="col-md-7 col-lg-8">
                   <h4 class="mb-3">Información del Cliente</h4>
-                  <form class="needs-validation" novalidate>
+                  <form id="compraForm" method="POST" class="needs-validation" novalidate>
                     <div class="row g-3">
                       <div class="col-sm-6">
                         <label for="firstName" class="form-label">Nombre(s)</label>
@@ -124,20 +124,11 @@
                     <h4 class="mb-3">Forma de Pago</h4>
           
                     <div class="my-3">
-                      <div class="form-check">
-                        <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked required>
-                        <label class="form-check-label" for="credit">Tarjeta de Crédito</label>
-                      </div>
-
-                      <div class="form-check">
-                        <input id="debit" name="paymentMethod" type="radio" class="form-check-input" required>
-                        <label class="form-check-label" for="debit">Tarjeta de Débito</label>
-                      </div>
-
-                      <div class="form-check">
-                        <input id="paypal" name="paymentMethod" type="radio" class="form-check-input" required>
-                        <label class="form-check-label" for="paypal">PayPal</label>
-                      </div>
+                      <select class="form-select" id="formaPago" required>
+                        <option value="Tarjeta de Crédito">Tarjeta de Crédito</option>
+                        <option value="Tarjeta de Débito">Tarjeta de Débito</option>
+                        <option value="PayPal">PayPal</option>
+                      </select>
                     </div>
           
                     <div class="row gy-3">
@@ -216,5 +207,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
     <script src="assets/js/form-validation.js"></script>
     <script src="assets/js/pago.js"></script>
+    <script src="assets/js/mandarcompra.js"></script>
 </body>
 </html>

@@ -8,8 +8,11 @@ const MLRoutes = require('./routes/ML.routes');
 const pLocales = require('./routes/productosLocales.routes');
 const vistaProductos = require('./MVC/views/view.productos');
 const vistaUsuarios = require('./MVC/views/view.usuarios');
+const vistaCompras = require('./MVC/views/view.compras');
 const Productos = require('./MVC/models/model.productos');
 const Usuarios = require('./MVC/models/model.usuarios');
+const Compras = require('./MVC/models/model.compras');
+const DetalleCompras = require('./MVC/models/model.detalle');
 
 app.use(express.json());
 app.use(cors());
@@ -35,6 +38,8 @@ async function inicioServidor() {
         //console.log(process.env.DB_USER)
         await Productos.sync({alter:true});
         await Usuarios.sync({alter:true});
+        await Compras.sync({alter:true});
+        await DetalleCompras.sync({alter:true});
         await Productos.findOrCreate({
             where: {
                 nombre_producto: 'Pantalon', 
@@ -76,3 +81,4 @@ MLRoutes(app);
 pLocales(app);
 vistaProductos(app);
 vistaUsuarios(app);
+vistaCompras(app);
