@@ -29,11 +29,26 @@ form.addEventListener('submit', async (event) => {
         })
     })
 
-    alert("Usuario Actualizado Correctamente")
-    location.href = '/usuarios'
-    } catch (error) {
-        console.log(error)
+    if(resultado.status == 400){
+        swal({
+            title: "No tienes permiso para modificar",
+            icon: "error",
+          });
+    } else {
+        swal({
+            title: "Usuario Actualizado Correctamente",
+            icon: "success",
+          });
+          setTimeout(() => {
+            location.href = '/usuarios'
+        }, 3000);
     }
+} catch (error) {
+    swal({
+        title: "No tienes permiso para modificar",
+        icon: "error",
+      });
+}
 
 })
 

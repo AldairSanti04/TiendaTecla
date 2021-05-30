@@ -26,12 +26,24 @@ form.addEventListener('submit', async (event) => {
         })
     })
 
-    alert("Usuario Agregado Correctamente")
-    newFormulario();
-    location.href = '/usuarios'
-    } catch (error) {
-        console.log(error)
+    if(resultado.status == 400){
+        swal({
+            title: "No tienes permiso para agregar usuarios",
+            icon: "error",
+          });
+    } else {
+        swal({
+            title: "Usuario Agregado Correctamente",
+            icon: "success",
+          });
+        newFormulario();
     }
+} catch (error) {
+    swal({
+        title: "No tienes permiso para agregar usuarios",
+        icon: "error",
+      });
+}
 })
 
 function newFormulario()

@@ -55,6 +55,11 @@ form.addEventListener('submit', async (event) => {
         if(data.tipo === 1){
             location.href = '/index'
         } else {
+            swal({
+                title: `Acceso Denegado`,
+                text: "Este Login es para Administradores, te redirigiremos al Login de usuarios",
+                icon: "error",
+              });
             location.href = 'https://aldairsanti04.github.io/MiTienda/pages/RegistroLogin.html'
         }
     }
