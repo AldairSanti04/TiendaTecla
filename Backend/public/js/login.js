@@ -60,7 +60,9 @@ form.addEventListener('submit', async (event) => {
                 text: "Este Login es para Administradores, te redirigiremos al Login de usuarios",
                 icon: "error",
               });
-            location.href = 'https://aldairsanti04.github.io/MiTienda/pages/RegistroLogin.html'
+              setTimeout(() => {
+                location.href = 'https://aldairsanti04.github.io/MiTienda/pages/RegistroLogin.html'
+            }, 3000);
         }
     }
 })

@@ -72,6 +72,26 @@ module.exports = async (app)=> {
                 res.status(400).json('No se puedo crear el usuarios')
             }
         })
+
+        app.post('/nuevoUsuario', async (req,res)=>{
+            let usuario = req.body
+            try{
+                let guardado = await controladorUsuarios.guardarNuevoUsuario(req.body)
+                if(guardado) {
+                    let resultado = await controladorUsuarios.chequearUsuario(usuario)
+                    if (resultado){
+                        let usuarioInfo = await controladorUsuarios.datosUsuario(usuario)
+                        let tokenResult = await controladorUsuarios.generaToken(usuario)
+                        res.json({ token: tokenResult, user: usuarioInfo })
+                    }else {
+                        throw new Error ("Contraseña Incorrecta")
+                    }
+                    res.redirect('/usuarios');
+                }
+            }catch (err){
+                res.status(400).json('No se puedo crear el usuarios')
+            }
+        })
     
         // ruta para modificar usuario
         app.get('/edit/:id', async (req,res)=>{

@@ -69,6 +69,16 @@ module.exports.guardarUsuario = async (data) => {
     }
 };
 
+//Guardar un usuario
+module.exports.guardarNuevoUsuario = async (data) => {
+    try {
+        let resultado = await Usuarios.nuevoUsuarioCliente(data)
+        return resultado;
+    }catch (err){
+        throw new Error ('Ocurrio un problema al realizar el alta en la DB')
+    }
+};
+
 //Seleccionar un solo usuario por ID
 module.exports.buscarUsuario = async (data)=>{
     try {

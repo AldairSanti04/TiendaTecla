@@ -74,13 +74,30 @@ const Usuarios = sequelize.define('usuarios', {
 
   module.exports.nuevoUsuario = async (data)=> {
     try {
-        let resultado = await Usuarios.findOne({where:{usuario: data.usuario}})
+        let resultado = await Usuarios.findOne({where:{email: data.email}})
         if (resultado != null){
           alert("Error en la creacion del usuario o el usuario ya existe")
           //throw new Error ('Error en la creacion del usuario o el usuario ya existe')
           return false; 
         }else {            
             await Usuarios.create(({nombres: data.nombres, apellidos: data.apellidos, email: data.email, usuario: data.usuario, pass: data.pass, tipo_usuario: data.tipo_usuario}))
+            return true;
+        }
+    }catch (err) {
+        console.log(err)
+        throw new Error (err)
+    }
+  }
+
+  module.exports.nuevoUsuarioCliente = async (data)=> {
+    try {
+        let resultado = await Usuarios.findOne({where:{email: data.email}})
+        if (resultado != null){
+          alert("Error en la creacion del usuario o el usuario ya existe")
+          //throw new Error ('Error en la creacion del usuario o el usuario ya existe')
+          return false; 
+        }else {            
+            await Usuarios.create(({nombres: data.nombres, apellidos: data.apellidos, email: data.email, usuario: data.usuario, pass: data.pass, tipo_usuario: 2}))
             return true;
         }
     }catch (err) {
