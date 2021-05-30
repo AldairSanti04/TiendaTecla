@@ -1,0 +1,65 @@
+<%- include("cabeceras/c.edit.ejs") %>
+
+<body>
+
+  <h1 class="p-3 text-center">Modificacion de usuario</h1>
+
+  <div class="container mt-4">
+    <div class="p-2"></div>
+    <div class="card border-secondary">
+      <div class="card-header"><span id="idUsuario"><%= result.id %></span> <%= result.nombres %> </div>
+      <div class="card-body">
+
+          <!-- referencia a ruta guardar creacion de usuario se hace un POST-->
+        <form id="nuevoForm" method="POST" class="row g-3 needs-validation">
+          
+          <div class="col-md-4 position-relative">
+            <label for="usuario_nombres" class="form-label">Nombres</label>
+            <input type="text" class="form-control is-valid" value="<%= result.nombres %>" id="usuario_nombres" name="usuario_nombres" tabindex="1" required>
+            <div class="invalid-tooltip">Ingresa tus nombres </div>
+          </div>
+
+          <div class="col-md-4 position-relative">
+            <label for="usuario_apellidos" class="form-label">Apellidos</label>
+            <input type="text" class="form-control is-valid" value="<%= result.apellidos %>"id="usuario_apellidos" name="usuario_apellidos" tabindex="2" required>
+            <div class="invalid-tooltip">Ingresa tus apellidos </div>
+          </div>
+
+          <div class="col-md-4 position-relative">
+            <label for="usuario_email" class="form-label">Email</label>
+            <div class="input-group has-validation">
+              <span class="input-group-text" id="arroba">@</span>
+              <input type="email" class="form-control is-valid" value="<%= result.email %>" id="usuario_email" aria-describedby="validationTooltipUsernamePrepend" name="usuario_email" tabindex="3" required>
+              <div class="invalid-tooltip">Elija un nombre de usuario unico y valido</div>
+            </div>
+          </div>
+
+          <div class="col-md-4 position-relative">
+            <label for="usuario" class="form-label">Usuario</label>
+            <input type="text" class="form-control is-valid" value="<%= result.usuario %>" id="usuario" name="usuario" tabindex="4" required>
+            <div class="invalid-tooltip">Ingresa un nombre de usuario </div>
+          </div>
+          
+          <div class="col-md-4 position-relative">
+            <label for="usuario_pass" class="form-label">Contraseña</label>
+            <input type="password" class="form-control is-valid" value="<%= result.pass %>" id="usuario_pass" name="usuario_pass" tabindex="5" required />
+          </div>
+
+          <div class="col-md-4">
+            <label for="tipo_usuario" class="form-label">Rol</label>
+            <select value="<%= result.tipo_usuario %>"id="tipo_usuario" name="tipo_usuario" class="form-select is-valid" tabindex="6">
+              <option <%=result.tipo_usuario=='1' ? "selected" : '' %> value="1">Administrador</option>
+              <option <%=result.tipo_usuario=='2' ? "selected" : '' %> value="2">Usuario</option>
+            </select>
+          </div>
+
+            <button type="submit" class="btn btn-primary col-md-6" tabindex="7">Guardar</button>
+            <a href="/" class="btn btn-secondary col-md-6">Cancelar</a>
+          </form>
+        </div>
+      </div>
+    </div>
+  <script src="../js/editUsu.js"></script>
+</body>
+
+</html>

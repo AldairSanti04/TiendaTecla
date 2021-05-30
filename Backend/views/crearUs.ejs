@@ -1,0 +1,71 @@
+<%- include("cabeceras/c.crear.ejs") %>
+
+<body>
+
+  <div class="container mt-4">
+    <div class="card border-secondary">
+      <div class="card-header">Nuevo Registro</div>
+      <div class="card-body">
+
+        <form id="nuevoForm" method="POST" class="row g-3 needs-validation">
+          
+          <div class="col-md-4 position:relative">
+            <label for="validationTooltip01" class="form-label">Nombres</label>
+            <input type="text" class="form-control" id="usuario_nombres" required>
+            <div class="invalid-tooltip">
+              Ingresa tus nombres
+            </div>
+          </div>
+          <div class="col-md-4 position-relative">
+            <label for="validationTooltip02" class="form-label">Apellidos</label>
+            <input type="text" class="form-control" id="usuario_apellidos" required>
+            <div class="invalid-tooltip">
+              Ingresa tus apellidos
+            </div>
+          </div>
+          <div class="col-md-4 position-relative">
+            <label for="validationTooltipUsername" class="form-label">Email</label>
+            <div class="input-group has-validation">
+              <span class="input-group-text" id="validationTooltipUsernamePrepend">@</span>
+              <input type="text" class="form-control" id="usuario_email" aria-describedby="validationTooltipUsernamePrepend" required>
+              <div class="invalid-tooltip">
+                Elija un nombre de usuario unico y valido
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 position-relative">
+            <label for="validationTooltip02" class="form-label">Usuario</label>
+            <input type="text" class="form-control" id="usuario" required>
+            <div class="valid-tooltip">
+              Ingresa un nombre de usuario
+            </div>
+          </div>
+          <div class="col-md-4 position-relative">
+            <label for="usuario_pass" class="form-label">Contraseña</label>
+            <input type="password" class="form-control" id="usuario_pass" required/>
+          </div>
+
+          <div class="col-md-3 position-relative">
+            <label for="validationTooltip04" class="form-label">State</label>
+            <select class="form-select" id="tipo_usuario" required>
+              <option value="1" selected>Administrador</option>
+              <option value="2">Usuario</option>
+            </select>
+            <div class="invalid-tooltip">
+              Please select a valid state.
+            </div>
+          </div>
+          
+         <div class="col-12">
+            <button class="btn btn-primary col-md-6" type="submit">Guardar</button>
+          </div>
+          <a href="/" class="btn btn-secondary col-md-6">Cancelar</a>
+        </form>
+        
+      </div>
+    </div>
+  </div>
+  <script src="js/crearUsu.js"></script>
+</body>
+
+</html>

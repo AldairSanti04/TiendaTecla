@@ -1,0 +1,62 @@
+<%- include("cabeceras/c.listarUsu.ejs") %>
+
+<body>
+
+  <div eblclass="container">
+    <!-- referencia a ruta create-->
+    <a href="/create" class="btn btn-outline-primary mt-4"><i class='bx bxs-plus-circle bx-md'></i></a>
+    <table class="table table-dark table-striped text-center mt-4">
+      <thead>
+        <tr class="bg-primary text-white">
+          <th scope="col">ID</th>
+          <th scope="col">NOMBRES</th>
+          <th scope="col">APELLIDOS</th>
+          <th scope="col">CORREO</th>
+          <th scope="col">USUARIO</th>
+          <th scope="col">CONTRASEÑA</th>
+          <th scope="col">ROL</th>
+          <th scope="col">ACCIONES</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% results.forEach((user)=>{ %>
+          <tr>
+            <td>
+              <%= user.id %>
+            </td>
+            <td>
+              <%= user.nombres %>
+            </td>
+            <td>
+              <%= user.apellidos %>
+            </td>
+            <td>
+              <%= user.email %>
+            </td>
+            <td>
+              <%= user.usuario %>
+            </td>
+            <td>
+              <%= user.pass %>
+            </td>
+            <td>
+              <% if(user.tipo_usuario == 1){ %>
+                Administrador
+              <% } else{ %>  
+                Usuario
+              <% } %>
+            </td>
+            <td>
+              <a href="/edit/<%= user.id%>" class="btn btn-outline-info"><i class='bx bxs-edit'></i></a>
+              <a onclick="eliminar('<%= user.id %>')" class="btn btn-outline-danger"><i class='bx bxs-trash-alt'></i></a>            
+            </td>
+          </tr>
+          <% }) %>
+
+      </tbody>
+    </table>
+  </div>
+  <script src="js/eliminarUsu.js"></script>
+</body>
+
+</html>
