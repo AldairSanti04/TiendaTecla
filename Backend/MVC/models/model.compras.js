@@ -4,9 +4,9 @@ const sequelize = require('../../db/db')
 //Definir mi Modelo con que voy a trabajar
 const Compras = sequelize.define('compras', {
     id : {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING(20),
       primaryKey: true,
-      autoIncrement: true,
+      autoIncrement: false,
     },
     cliente_id: {
       type: DataTypes.INTEGER,

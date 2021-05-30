@@ -10,13 +10,14 @@ let idData = document.getElementById('idUsuario')
 //Manda el post
 form.addEventListener('submit', async (event) => {
     event.preventDefault();
-    
+    let data = await JSON.parse(localStorage.getItem('dataUsuario'))
     try {
         let resultado = await fetch("http://localhost:3000/update", { 
         method: 'post',
         headers: {
             "Accept": "application/json, text/plain, *,*",
             "Content-Type": "application/json",
+            'Authorization': `Bearer ${data.token}`
         },
         body: JSON.stringify( {
             "id": parseInt(idData.textContent),

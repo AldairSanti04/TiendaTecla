@@ -8,14 +8,15 @@ const DetalleCompras = sequelize.define('detalle_compras', {
     autoIncrement: true,
   },
   compra_id: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.STRING(20),
     references: {
         model: 'compras',
         key: 'id'
-     }
+     },
+    allowNull: false,
   },
   producto: {
-      type: DataTypes.STRING(100),
+      type: DataTypes.STRING(250),
       allowNull: false,
   },
   precio: {
@@ -26,12 +27,12 @@ const DetalleCompras = sequelize.define('detalle_compras', {
     type: DataTypes.INTEGER,
     allowNull: false
   },
-  total: {
+  subtotal: {
     type: DataTypes.DECIMAL(15,2),
     allowNull: false
   },
 },{
-  timestamps: true
+  timestamps: false
 })
 
 module.exports = DetalleCompras;

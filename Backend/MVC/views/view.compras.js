@@ -13,4 +13,15 @@ module.exports = async (app)=> {
             res.status(400).json('Error en la consulta')
         }
     })
+
+    app.post('/detalleCompra', middUser.verificacionUsuario, async (req, res) => {
+        let data = req.body
+        try{
+            let resultado = await controladorCompras.nuevosDetalles(data)
+            res.send(resultado)
+        }catch (err){
+            console.log(err)
+            res.status(400).json('Error en la consulta')
+        }
+    })
 }

@@ -26,9 +26,8 @@ function cargarEventos() {
 function procesarCompra(e) {
     e.preventDefault();
     if (compra.obtenerProductosLS().length === 0) {
-        alert('Su Carrito está Vacío')
+        swal("Su Carrito está Vacío")
     } else {
         location.href = "pagoInfo.html";
     }
 }
-
