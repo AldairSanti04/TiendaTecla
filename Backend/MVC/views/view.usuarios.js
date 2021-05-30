@@ -54,8 +54,8 @@ module.exports = async (app)=> {
         //Rutas para agregar y guardar un nuevo producto
         app.get('/create', async (req,res)=>{
             try{
-                res.status(200).json('estas en la pagina crear');
                 res.render('crearUsu.ejs')
+                res.status(200).json('estas en la pagina crear');
             }catch (err){
                 console.log(err)
                 res.status(500).json('Error al dirigirse a la pagina CREAR')
@@ -68,7 +68,7 @@ module.exports = async (app)=> {
                 if(resultado) {
                     console.log('Usuario Agregado Correctamente');
                     res.send(200,resultado)
-                    res.redirect('/');
+                    res.redirect('/usuarios');
                 }
             }catch (err){
                 res.status(500).json('No se puedo crear el usuarios')
@@ -91,7 +91,7 @@ module.exports = async (app)=> {
             try {
                 let resultado = await controladorUsuarios.modificarUsuario(req.body);
                 if(resultado){
-                    res.redirect('/');
+                    res.redirect('/usuarios');
                     res.send(200,resultado);
                 }
             } catch (error) {
@@ -105,7 +105,7 @@ module.exports = async (app)=> {
             try {
                 let resultado = await controladorUsuarios.eliminarUsuario(data)
                 if(resultado){
-                    res.redirect('/');
+                    res.redirect('/usuarios');
                     res.send(200,'Elemento eliminado');
                 }      
             }catch (err){

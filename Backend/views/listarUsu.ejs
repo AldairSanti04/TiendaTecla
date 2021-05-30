@@ -2,9 +2,17 @@
 
 <body>
 
-  <div eblclass="container">
+  <h1 class="p-3 text-center">Listado de Usuarios</h1>
+
+  <div class="container">
     <!-- referencia a ruta create-->
-    <a href="/create" class="btn btn-outline-primary mt-4"><i class='bx bxs-plus-circle bx-md'></i></a>
+    <div class="p-2">
+      <a href="/index" class="btn btn-outline-primary">Regresar</a>
+    </div>
+    <!-- referencia a ruta create-->
+    <div class="d-flex flex-row-reverse">
+      <a href="/create" class="btn btn-outline-primary mt-4"><i class='bx bxs-plus-circle bx-md'></i></a>
+    </div>
     <table class="table table-dark table-striped text-center mt-4">
       <thead>
         <tr class="bg-primary text-white">
@@ -13,7 +21,6 @@
           <th scope="col">APELLIDOS</th>
           <th scope="col">CORREO</th>
           <th scope="col">USUARIO</th>
-          <th scope="col">CONTRASEÑA</th>
           <th scope="col">ROL</th>
           <th scope="col">ACCIONES</th>
         </tr>
@@ -35,9 +42,6 @@
             </td>
             <td>
               <%= user.usuario %>
-            </td>
-            <td>
-              <%= user.pass %>
             </td>
             <td>
               <% if(user.tipo_usuario == 1){ %>

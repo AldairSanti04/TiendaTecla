@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/josueSoP/TiendaCorto1.0#readme",
   "dependencies": {
+    "chai": "^4.3.4",
+    "chai-http": "^4.3.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "ejs": "^3.1.6",
@@ -25,6 +27,7 @@
     "express-rate-limit": "^5.2.6",
     "joi": "^17.4.0",
     "jsonwebtoken": "^8.5.1",
+    "mocha": "^8.4.0",
     "node-fetch": "^2.6.1",
     "nodemon": "^2.0.7",
     "sequelize": "^6.6.2",

@@ -38,6 +38,11 @@ const Usuarios = sequelize.define('usuarios', {
 
   module.exports = Usuarios
 
+  module.exports.listar = async () => {
+    let resultado = await sequelize.query('SELECT * FROM usuarios')
+    return resultado[0]
+  }
+
   module.exports.existenciaDeUsuario = async (usr)=>{
     //chequear con la base de datos que exista el usuario
     let resultado = await Usuarios.findOne({where: {email:usr.email}})

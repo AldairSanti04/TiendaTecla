@@ -27,7 +27,8 @@ form.addEventListener('submit', async (event) => {
     })
 
     alert("Usuario Agregado Correctamente")
-    location.href = '/'
+    newFormulario();
+    location.href = '/usuarios'
     } catch (error) {
         console.log(error)
     }

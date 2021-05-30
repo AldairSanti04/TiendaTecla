@@ -55,7 +55,7 @@ form.addEventListener('submit', async (event) => {
         if(data.tipo === 1){
             location.href = '/index'
         } else {
-            location.href = 'https://mitiendatecla.herokuapp.com/'
+            location.href = 'https://aldairsanti04.github.io/MiTienda/pages/RegistroLogin.html'
         }
     }
 })

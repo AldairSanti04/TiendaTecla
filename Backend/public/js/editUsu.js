@@ -30,8 +30,7 @@ form.addEventListener('submit', async (event) => {
     })
 
     alert("Usuario Actualizado Correctamente")
-    newFormulario()
-    location.href = '/'
+    location.href = '/usuarios'
     } catch (error) {
         console.log(error)
     }

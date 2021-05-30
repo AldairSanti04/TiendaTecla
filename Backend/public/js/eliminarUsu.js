@@ -7,8 +7,8 @@ async function eliminar(id_usuario) {
             "Content-Type": "application/json",
         }
         })
-        location.href = '/'
+        location.href = '/usuarios'
     } else {
-        location.href = '/'
+        location.href = '/usuarios'
     }
 }
