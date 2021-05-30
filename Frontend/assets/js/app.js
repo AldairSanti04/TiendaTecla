@@ -43,7 +43,7 @@ async function getTendencias(){
     result = data;
 
     if(result.error === 'No hay productos para tu búsqueda'){
-        location.href = "notFound.html";
+        location.href = "./pages/notFound.html";
     } else {
         pageNumber=1;
         items.innerHTML  =  '' ;
@@ -82,7 +82,7 @@ async function buscarXcategoria(idCategoria, nombre){
     result = data;
 
     if(result.error === 'No hay productos para tu búsqueda'){
-        location.href = "notFound.html";
+        location.href = "./pages/notFound.html";
     } else {
         pageNumber=1;
         items.innerHTML  =  '' ;
@@ -107,7 +107,7 @@ async function obtenerBusqueda(buscar) {
     result = data;
 
     if(result.error === 'No hay productos para tu búsqueda'){
-        location.href = "notFound.html";
+        location.href = "./pages/notFound.html";
     } else {
         pageNumber=1;
         items.innerHTML  =  '' ;

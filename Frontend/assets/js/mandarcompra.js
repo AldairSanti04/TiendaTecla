@@ -29,6 +29,10 @@ form.addEventListener('submit', async (event) => {
             "forma_de_pago": formaPago.value 
         })
     })
+    if(resultado){
+        localStorage.removeItem('productos');
+        location.href = "thanksPage.html";
+    }
     } catch (error) {
         swal({
             title: "Necesitas Iniciar Sesión para poder comprar",

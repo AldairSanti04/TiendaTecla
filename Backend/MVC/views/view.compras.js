@@ -3,7 +3,7 @@ const controladorCompras = require('../controllers/controller.compras')
 const middUser = require('../../middleware/middUsuarios')
 
 module.exports = async (app)=> {
-    app.post('/comprar', async (req,res)=>{
+    app.post('/comprar', middUser.verificacionUsuario, async (req,res)=>{
         let data = req.body
         try{
             let resultado = await controladorCompras.nuevaCompra(data)
