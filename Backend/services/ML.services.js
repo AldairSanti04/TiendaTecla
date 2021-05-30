@@ -5,11 +5,11 @@ let Productos = [];
 let Categorias = [];
 
 class Producto {
-    constructor(id, nombre, precio, imagen) {
+    constructor(id, nombre_producto, precio_producto, imagen_producto) {
         this.id = id,
-        this.nombre = nombre,
-        this.precio = precio,
-        this.imagen = imagen
+        this.nombre_producto = nombre_producto,
+        this.precio_producto = precio_producto,
+        this.imagen_producto = imagen_producto
     }
 }
 

@@ -28,12 +28,29 @@ document.addEventListener('DOMContentLoaded', () => {//registra un evento a un o
 
 // Traer productos
 function getProductos(){
-    fetch('http://localhost:3000/productos')
+    fetch('http://localhost:3000/locales')
     .then(res => res.json())
     .then(data => {
         result = data;
         showProductos(result);
     })
+}
+
+//Traer Tendencias
+async function getTendencias(){
+    let resp = await fetch('http://localhost:3000/productos');        
+    let data = await resp.json();
+    result = data;
+
+    if(result.error === 'No hay productos para tu búsqueda'){
+        location.href = "notFound.html";
+    } else {
+        pageNumber=1;
+        items.innerHTML  =  '' ;
+        paginadorP.innerHTML = '';
+        titulo.textContent = 'Tendencias Ropa, Bolsas y Calzado';
+        showProductos(result);
+    }
 }
 
 //Traer Categorías
@@ -123,9 +140,9 @@ function showProductos(productos){
     let pagination = paginate(productos,pageSize,pageNumber);
     pagination.forEach(element => {//ciclo forEach para recorrer elementos
         //DOM accedemos a los elementos con querySelector
-        plantillaProd.querySelector('img').setAttribute("src", element.imagen);
-        plantillaProd.querySelector('h5').textContent = element.nombre;
-        plantillaProd.querySelector('span').textContent = `${element.precio}`;
+        plantillaProd.querySelector('img').setAttribute("src", element.imagen_producto);
+        plantillaProd.querySelector('h5').textContent = element.nombre_producto;
+        plantillaProd.querySelector('span').textContent = `${element.precio_producto}`;
         plantillaProd.querySelector('.btn-success').dataset.id = element.id;
         
         let productosLS;

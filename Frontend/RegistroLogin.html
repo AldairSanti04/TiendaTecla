@@ -39,25 +39,28 @@
         <!-- Formulario de login y Registro -->
         <div class="contenedorLoginRegistro">
           <!-- Login -->
-          <form class="formLogin">
+          <form id="formLogin" class="formLogin" method="POST">
             <h2>Iniciar Sesión</h2>
             <input type="email" class="form-control" id="correoLogin" placeholder="Correo Electronico">
             <input type="password" class="form-control" id="passwordLogin" placeholder="Contraseña">
-            <button id="btn-entrar" type="button" class="btn btn-outline-dark">Entrar</button>
+            <button id="btn-entrar" type="submit" class="btn btn-outline-dark">Entrar</button>
           </form>
           <!-- Formulario Registro -->
-          <form class="formRegistro">
+          <form class="formRegistro" method="POST">
             <h2>Registrarse</h2>
-            <input type="text" class="form-control" placeholder="Nombre Completo" aria-label="Username" aria-describedby="basic-addon1">
+            <input id="nombres" type="text" class="form-control" placeholder="Nombres" aria-label="Username" aria-describedby="basic-addon1">
+            <input id="apellidos" type="text" class="form-control" placeholder="Apellidos" aria-label="Username" aria-describedby="basic-addon1">
             <input type="email" class="form-control" id="correoRegistro" placeholder="Correo Electronico">
-            <input type="text" class="form-control" placeholder="Usuario" aria-label="Username" aria-describedby="basic-addon1">
+            <input id="usuario" type="text" class="form-control" placeholder="Usuario" aria-label="Username" aria-describedby="basic-addon1">
             <input type="password" class="form-control" id="passwordRegistro" placeholder="Contraseña">
-            <button id="btn-registrar" type="button" class="btn btn-outline-dark">Registrar</button>
+            <button id="btn-registrar" type="submit" class="btn btn-outline-dark">Registrar</button>
           </form>
         </div>
 
       </div>
     </div>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="assets/js/registroLogin.js"></script>
+    <script src="assets/js/loginpage.js"></script>
   </body>
 </html>
