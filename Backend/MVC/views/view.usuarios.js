@@ -43,8 +43,8 @@ module.exports = async (app)=> {
         app.get('/usuarios', async(req,res)=> {
             try {
                 let resultado = await controladorUsuarios.listarUsuarios()
-                res.send(200,resultado)
                 res.render('listarUsu.ejs', {results:resultado});
+                res.send(200,resultado)
             }catch (err){
                 console.log(err)
                 res.status(400).json('Error al dirigirse a la ruta vistas')
@@ -54,8 +54,8 @@ module.exports = async (app)=> {
         //Rutas para agregar y guardar un nuevo producto
         app.get('/create',  async (req,res)=>{
             try{
-                res.status(200).json('estas en la pagina crear');
                 res.render('crearUsu.ejs')
+                res.status(200).json('estas en la pagina crear');
             }catch (err){
                 console.log(err)
                 res.status(400).json('Error al dirigirse a la pagina CREAR')
@@ -67,8 +67,8 @@ module.exports = async (app)=> {
                 let resultado = await controladorUsuarios.guardarUsuario(req.body)
                 if(resultado) {
                     console.log('Usuario Agregado Correctamente');
-                    res.send(200,resultado)
                     res.redirect('/usuarios');
+                    res.send(200,resultado)
                 }
             }catch (err){
                 res.status(400).json('No se puedo crear el usuarios')
