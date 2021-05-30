@@ -14,11 +14,20 @@ https://app.swaggerhub.com/apis/TeclaAcademy5/API_Tecla/1.0.0
 - Clonar Repositorio
     - `npm install`
 
+- Crear un archivo .env con las siguientes variables
+```
+HOST =
+PORT =
+LISTABLANCA =[]
+DB_HOST =
+DB_PORT =
+DB_USER =
+DB_PASS =
+SECRET_KEY =
+```
+
 - Iniciar Servidor Local
     - `npm run dev` o `npm run produccion` 
 
 - Para ver la Tienda 
-    - En la carpeta Frontend buscar el archivo index.html 
-    - Dar click derecho sobre el archivo index.html
-    - Seleccionar la opción "Open with Live Server"
-    - Listo! Ya puedes interactuar con la Tienda
+    - https://aldairsanti04.github.io/MiTienda/
