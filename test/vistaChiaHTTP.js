@@ -8,7 +8,7 @@ const url= 'http://localhost:3000';
 describe('Testeado el endpoint de CRUD usuarios: ',()=>{
 
     describe('Testeado CREAR usuario:',()=>{
-        it('Deberia obtener un ok', (done) => {
+        it('Deberia ir a la pagina /crear', (done) => {
             chai.request(url)
                 .get('/create')
                 .end( function(err,res){
@@ -20,37 +20,44 @@ describe('Testeado el endpoint de CRUD usuarios: ',()=>{
     
     });
     
-    describe.only('Testeado GUARDAR usuario: ',()=>{
-        it('Deberia insertar un nuevo usuario', (done) => {
+    describe('Testeado GUARDAR usuario: ',()=>{
+        it('Deberia recibir un error al crear nuevo usuario porque no es administrador', (done) => {
             chai.request(url)
                 .post('/save')
-                .send({id:4, nombres: "josue", apellidos: "soto", email: "sue@gmail.com", usuario:"jo", pass:"123", tipo_usuario:1})
-                .end( function(err,res){
-                    console.log(res.body)
-                    expect(res).to.have.status(200);
-                    done();
-                });
-        });
-        it('Deberia recibir un error', (done) => {
-            chai.request(url)
-                .post('/save')
-                .send({id:1, 
-                    nombres: "josue", 
-                    apellidos: "Soto", 
-                    email: "sue@gmail.com", 
-                    usuario:"josu", 
-                    pass:"123", 
-                    tipo_usuario:1 
+                .send({id:2,
+                    nombres: "josue",
+                    apellidos: "soto",
+                    email: "sue@gmail.com",
+                    usuario:"j",
+                    pass:"123",
+                    tipo_usuario:1
                 })
                 .end( function(err,res){
                     console.log(res.body)
-                    expect(res).to.have.status(500);
+                    expect(res).to.have.status(400);
                     done();
                 });
         });
+        // it('Deberia recibir un error', (done) => {
+        //     chai.request(url)
+        //         .post('/save')
+        //         .send({id:3, 
+        //             nombres: "josue", 
+        //             apellidos: "soto", 
+        //             email: "sue@gmail.com", 
+        //             usuario:"j", 
+        //             pass:"123", 
+        //             tipo_usuario:1 
+        //         })
+        //         .end( function(err,res){
+        //             console.log(res.body)
+        //             expect(res).to.have.status(400);
+        //             done();
+        //         });
+        // });
     });
 
-    describe.only('Obtener todos los usuarios: ',()=>{
+    describe('Obtener todos los usuarios: ',()=>{
         it('Deberia obtener todos los usuarios', (done) => {
             chai.request(url)
                 .get('/')
@@ -60,46 +67,44 @@ describe('Testeado el endpoint de CRUD usuarios: ',()=>{
                     done();
                 });
         });
-    
     });
 
     // describe('Testeando BUSCAR usuario para poderlo modificar: ',()=>{
-    //     it('dberia obtener el usuario con el id 1', (done) => {
+    //     it('Deberia dirigirse a /edit y obtener el usuario con el id 1', (done) => {
     //         chai.request(url)
     //             .get('/edit/1')
     //             .end( function(err,res){
     //                 console.log(res.body)
     //                 expect(res.body).to.have.property('id').to.be.equal(1);
-    //                 expect(res).to.have.status(200);
+    //                 expect(res).to.have.status(400);
     //                 done();
     //             });
     //     });
-    
     // });
 
-    // describe('Testeado ACTUALIZAR usuario: ',()=>{
-    //     it('Deberia actualizar un nuevo usuario', (done) => {
-    //         chai.request(url)
-    //             .post('/update')
-    //             // .type('form')
-    //             .send({id:1, nombres: "aldair", apellidos: "rufino", email: "alda@gmail.com", usuario:"alda", pass:"123", tipo_usuario:2})
-    //             .end( function(err,res){
-    //                 console.log(res.body)
-    //                 expect(res).to.have.status(200);
-    //                 done();
-    //             });
-    //     });
+    describe('Testeado ACTUALIZAR usuario: ',()=>{
+        it('Deberia actualizar un nuevo usuario', (done) => {
+            chai.request(url)
+                .post('/update')
+                // .type('form')
+                .send({id:1, nombres: "aldair", apellidos: "rufino", email: "alda@gmail.com", usuario:"alda", pass:"123", tipo_usuario:2})
+                .end( function(err,res){
+                    console.log(res.body)
+                    expect(res).to.have.status(400);
+                    done();
+                });
+        });
     //     it('Deberia recibir un error', (done) => {
     //         chai.request(url)
     //             .post('/update')
     //             .send({id:1, nombres: "aldair", apellidos: "rufino", email: "alda@gmail.com", usuario:"josu", pass:"123", tipo_usuario:2})
     //             .end( function(err,res){
     //                 console.log(res.body)
-    //                 expect(res).to.have.status(500);
+    //                 expect(res).to.have.status(400);
     //                 done();
     //             });
     //     });
-    // });
+    });
 
     // describe('Testeado ELIMINA usuario: ',()=>{
 
@@ -129,7 +134,5 @@ describe('Testeado el endpoint de CRUD usuarios: ',()=>{
     //     });
     
     // });
-
-    
 
 });
