@@ -44,7 +44,6 @@ module.exports = async (app)=> {
             try {
                 let resultado = await controladorUsuarios.listarUsuarios()
                 res.render('listarUsu.ejs', {results:resultado});
-                res.send(200,resultado)
             }catch (err){
                 console.log(err)
                 res.status(400).json('Error al dirigirse a la ruta vistas')
@@ -55,7 +54,6 @@ module.exports = async (app)=> {
         app.get('/create',  async (req,res)=>{
             try{
                 res.render('crearUsu.ejs')
-                res.status(200).json('estas en la pagina crear');
             }catch (err){
                 console.log(err)
                 res.status(400).json('Error al dirigirse a la pagina CREAR')
@@ -68,7 +66,6 @@ module.exports = async (app)=> {
                 if(resultado) {
                     console.log('Usuario Agregado Correctamente');
                     res.redirect('/usuarios');
-                    res.send(200,resultado)
                 }
             }catch (err){
                 res.status(400).json('No se puedo crear el usuarios')
@@ -101,7 +98,6 @@ module.exports = async (app)=> {
             try {
                 let resultado = await controladorUsuarios.buscarUsuario(data)
                 res.render('editUsu.ejs', {result:resultado.dataValues })
-                res.send(200,resultado[id]);
             }catch (err){
                 res.status(400).json('Error al dirigirse a la pagina EDITAR')
             }
@@ -112,7 +108,6 @@ module.exports = async (app)=> {
                 let resultado = await controladorUsuarios.modificarUsuario(req.body);
                 if(resultado){
                     res.redirect('/usuarios');
-                    res.send(200,resultado);
                 }
             } catch (error) {
                 res.status(400).json('No se puedo modificar el usuarios')
@@ -126,7 +121,6 @@ module.exports = async (app)=> {
                 let resultado = await controladorUsuarios.eliminarUsuario(data)
                 if(resultado){
                     res.redirect('/usuarios');
-                    res.send(200,'Elemento eliminado');
                 }      
             }catch (err){
                 res.status(400).json('No se puedo eliminar el usuario')
