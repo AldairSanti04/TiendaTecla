@@ -10,7 +10,7 @@ async function eliminar(id) {
       .then((willDelete) => {
         if (willDelete) {
             try {
-                let resultado = fetch("http://localhost:3000/eliminar/" + id, { // /nuevousuarios
+                let resultado = fetch("http://localhost:3000/eliminar/" + id, { 
                 method: 'get',
                 headers: {
                     "Accept": "application/json, text/plain, *,*",

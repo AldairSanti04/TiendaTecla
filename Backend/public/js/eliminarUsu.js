@@ -18,7 +18,7 @@ async function eliminar(id_usuario) {
                     'Authorization': `Bearer ${data.token}`
                 }
                 })
-                if(resultado.status === 400){
+                if(resultado.status == 400){
                     swal({
                         title: "No tienes permiso para eliminar usuarios" ,
                         icon: "error",
