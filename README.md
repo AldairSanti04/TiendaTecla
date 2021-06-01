@@ -35,9 +35,10 @@ SECRET_KEY =
     - `npm run dev` o `npm run produccion` 
 
 7. Para Ver el Login de Administrador
-    - `http://localhost:3000/login`
+    - http://localhost:3000/login
 
-8. Iniciar Sesión con el Usuario que se crea al momento de iniciar el Servidor Local
+8. Iniciar Sesión con el Usuario que se crea al momento de iniciar el Servidor Local ya que esté tiene permisos de Administrador
+    - Una vez que se inicie sesión se podra ver la Página de Administrador donde se podrá ingresar al CRUD de Poductos y Usuarios
 
 6. Para ver la Tienda 
     - https://aldairsanti04.github.io/MiTienda/
